@@ -13,56 +13,54 @@
 </head>
 <body>
     <h1>UPLOAD PAGE</h1>
-    </br>
+    <br/> <br/>
+    <p>This page will contain the upload FORM for the website. For now, it also holds
+        forms for other APIs for testing.</p>
     <!-- POST form -->
     <!-- (update action API path) -->
-    <form action="http://localhost:5500/upload" method="post" target="_blank">
+    <form action="http://localhost:5500/uploadTour" method="post" target="_blank">
         <h3>POST:</h3>
         <label for="location">Location:</label>
         <input type="text" name="location"  size="20" id="location"/> </br>
         <!-- Change later to a file submission (research needed) -->
-        <label for="videoPlaceholder">Video upload:</label>
-        <input type="text" name="videoPlaceholder"  size="20" id="videoPlaceholder"/> </br>
+        <label for="post_videoPlaceholder">Video upload (placeholder):</label>
+        <input type="text" name="post_videoPlaceholder"  size="20" id="post_videoPlaceholder"/> </br>
         <input type="submit" value="Submit"/> 
     </form>
     </br>
-    <!-- GET ID form (move to separate HTML file later) -->
-    <form action="http://localhost:5500/students/" method="get" id="get_id_form" target="_blank">
+    <!-- GET ID form (might not be used, move to separate HTML file later) -->
+    <form action="http://localhost:5500/tours/" method="get" id="get_id_form" target="_blank">
         <h3>GET (by id):</h3>
-        <label for="get_rid">Record ID:</label>
-        <input type="text" name="record_id" size="20" id="get_rid" value=""/> </br>
+        <label for="get_tid">Tour ID:</label>
+        <input type="text" name="tour_id" size="20" id="get_tid" value=""/> </br>
         <input type="submit" value="Submit"/> 
     </form>
     </br>
-    <!-- GET (Search) form (move to separate HTML file later) -->
-    <form action="http://localhost:5500/students" method="get" target="_blank">
+    <!-- GET (Search list) form (move to separate HTML file later) -->
+    <form action="http://localhost:5500/tours" method="get" target="_blank">
         <h3>GET (by search):</h3>
-        <label for="get_fname">First Name:</label>
-        <input type="text" name="first_name" value="" size="20" id="get_fname"/> </br>
-        <label for="get_lname">Last Name:</label>
-        <input type="text" name="last_name" value="" size="20" id="get_lname"/> </br>
+        <label for="get_tname">Tour Name:</label>
+        <input type="text" name="tour_name" value="" size="20" id="get_tname"/> </br>
         <input type="submit" value="Submit"/> 
     </form>
     </br>
-    <!-- PUT info (move to separate HTML file later) -->
+    <!-- PUT info (not an actual form) (move to separate HTML file later) -->
     <h3>PUT:</h3>
-    <label for="put_rid">Record ID:</label>
-    <input type="text" name="" size="20" id="put_rid" value=""/> </br>
-    <label for="put_fname">First Name:</label>
-    <input type="text" name="first_name" value="" size="20" id="put_fname"/> </br>
-    <label for="put_lname">Last Name:</label>
-    <input type="text" name="last_name" value="" size="20" id="put_lname"/> </br>
-    <label for="put_gpa">GPA:</label>
-    <input type="text" name="gpa" value="" size="20" id="put_gpa"/> </br>
+    <label for="put_tid">Tour ID:</label>
+    <input type="text" name="" size="20" id="put_tid" value=""/> </br>
+    <label for="put_fname">Tour Name:</label>
+    <input type="text" name="tour_name" value="" size="20" id="put_tname"/> </br>
+    <label for="put_videoPlaceholder">Video replacement (placeholder):</label>
+    <input type="text" name="put_videoPlaceholder" value="" size="20" id="put_videoPlaceholder"/>
     <label for="put_enrolled">Enrolled</label>
     <input type="checkbox" name="enrolled" size="20" id="put_enrolled"/> </br>
     <button id="put_btn">Update</button> </br>
 
     </br>
-    <!-- DELETE form (move to separate HTML file later) -->
+    <!-- DELETE form, may remove later and replace with ID wit name match (move to separate HTML file later) -->
     <h3>DELETE:</h3>
-    <label for="del_rid">Record ID:</label>
-    <input type="text" name="record_id" value="" size="20" id="del_rid"/> </br>
+    <label for="del_tid">Tour ID:</label>
+    <input type="text" name="tour_id" value="" size="20" id="del_tid"/> </br>
     <button id="del_btn">Delete</button>
 
     <!--JavaScript file -->
