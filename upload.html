@@ -18,52 +18,76 @@
         forms for other APIs for testing.</p>
     <!-- POST form -->
     <!-- (update action API path) -->
-    <form action="http://localhost:5500/uploadTour" method="post" target="_blank">
+    <form class="row g-3 col-5" action="http://localhost:5500/uploadTour" method="post" target="_blank">
         <h3>POST:</h3>
-        <label for="put_tname">Tour Name:</label>
-        <input type="text" name="tour_name" value="" size="20" id="put_tname"/> </br>
-        <label for="location">Location:</label>
-        <input type="text" name="post_location"  size="20" id="post_loc"/> </br>
-        <!-- Change later to a file submission (research needed) -->
-        <label for="post_videoPlaceholder">Video upload (placeholder):</label>
-        <input type="text" name="post_videoPlaceholder"  size="20" id="post_videoPlaceholder"/> </br>
-        <input type="submit" value="Submit"/> 
+        <div>
+            <label class="form-label" for="post_tname">Tour Name:</label>
+            <input class="form-control" type="text" name="tour_name" value="" size="20" id="post_tname"/>
+        </div>
+        <div>
+            <label class="form-label" for="location">Location:</label>
+            <input class="form-control" type="text" name="post_location"  size="20" id="post_loc"/>
+        </div>
+        <!-- video file submission (research needed) -->
+        <div>
+            <label class="form-label" for="post_video">Video upload:</label> <br/>
+            <input class="form-control" type="file" name="post_video" id="post_video"/>
+        </div>
+        <input class="btn btn-primary col-5" type="submit" value="Submit"/> 
     </form>
     </br>
     <!-- GET ID form (might not be used, move to separate HTML file later) -->
-    <form action="http://localhost:5500/tours/" method="get" id="get_id_form" target="_blank">
+    <form class="row g-3 col-5" action="http://localhost:5500/tours/" method="get" id="get_id_form" target="_blank">
         <h3>GET (by id):</h3>
-        <label for="get_tid">Tour ID:</label>
-        <input type="text" name="tour_id" size="20" id="get_tid" value=""/> </br>
-        <input type="submit" value="Submit"/> 
+        <div>
+            <label class="form-label" for="get_tid">Tour ID:</label>
+            <input class="form-control" type="text" name="tour_id" size="20" id="get_tid" value=""/>
+        </div>
+        <input class="btn btn-primary col-5" type="submit" value="Submit"/> 
     </form>
     </br>
     <!-- GET (Search list) form (move to separate HTML file later) -->
-    <form action="http://localhost:5500/tours" method="get" target="_blank">
+    <form class="row g-3 col-5" action="http://localhost:5500/tours" method="get" target="_blank">
         <h3>GET (by search):</h3>
-        <label for="get_tname">Tour Name:</label>
-        <input type="text" name="tour_name" value="" size="20" id="get_tname"/> </br>
-        <input type="submit" value="Submit"/> 
+        <div>
+            <label class="form-label"  for="get_tname">Tour Name:</label>
+            <input class="form-control" type="text" name="tour_name" value="" size="20" id="get_tname"/> </br>
+        </div>
+        <input class="btn btn-primary col-5" type="submit" value="Submit"/> 
     </form>
     </br>
     <!-- PUT info (not an actual form) (move to separate HTML file later) -->
-    <h3>PUT:</h3>
-    <label for="put_tid">Tour ID:</label>
-    <input type="text" name="" size="20" id="put_tid" value=""/> </br>
-    <label for="put_tname">Tour Name:</label>
-    <input type="text" name="tour_name" value="" size="20" id="put_tname"/> </br>
-    <label for="location">Location:</label>
-    <input type="text" name="put_location"  size="20" id="put_loc"/> </br>
-    <label for="put_videoPlaceholder">Video replacement (placeholder):</label>
-    <input type="text" name="put_videoPlaceholder" value="" size="20" id="put_videoPlaceholder"/>
-    <button id="put_btn">Update</button> </br>
-
+    <div class="row g-3 col-5">
+        <h3>PUT:</h3>
+        <div>
+            <label class="form-label" for="put_tid">Tour ID:</label>
+            <input class="form-control" type="text" name="" size="20" id="put_tid" value=""/>
+        </div>
+        <div>
+            <label class="form-label" for="put_tname">Tour Name:</label>
+            <input class="form-control" type="text" name="tour_name" value="" size="20" id="put_tname"/>
+        </div>
+        <div>
+            <label class="form-label" for="location">Location:</label>
+            <input class="form-control" type="text" name="put_location"  size="20" id="put_loc"/>
+        </div>
+        <div>
+            <label class="form-label" for="put_video">Video replacement:</label> </br>
+            <input class="form-control" type="file" name="put_video" id="put_video"/>
+        </div>
+    </br>
+        <button class="btn btn-primary col-5" id="put_btn">Update</button>
+    </div>
     </br>
     <!-- DELETE form, may remove later and replace with ID wit name match (move to separate HTML file later) -->
-    <h3>DELETE:</h3>
-    <label for="del_tid">Tour ID:</label>
-    <input type="text" name="tour_id" value="" size="20" id="del_tid"/> </br>
-    <button id="del_btn">Delete</button>
+    <div class="row g-3 col-5">
+        <h3>DELETE:</h3>
+        <div>
+            <label class="form-label" for="del_tid">Tour ID:</label>
+            <input class="form-control" type="text" name="tour_id" value="" size="20" id="del_tid"/>
+        </div>
+        <button class="btn btn-primary col-5" id="del_btn">Delete</button>
+    </div>
 
     <!--JavaScript file -->
     <script src="scripts/uploadScript.js"></script>
