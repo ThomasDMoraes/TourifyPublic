@@ -20,8 +20,10 @@
     <!-- (update action API path) -->
     <form action="http://localhost:5500/uploadTour" method="post" target="_blank">
         <h3>POST:</h3>
+        <label for="put_tname">Tour Name:</label>
+        <input type="text" name="tour_name" value="" size="20" id="put_tname"/> </br>
         <label for="location">Location:</label>
-        <input type="text" name="location"  size="20" id="location"/> </br>
+        <input type="text" name="post_location"  size="20" id="post_loc"/> </br>
         <!-- Change later to a file submission (research needed) -->
         <label for="post_videoPlaceholder">Video upload (placeholder):</label>
         <input type="text" name="post_videoPlaceholder"  size="20" id="post_videoPlaceholder"/> </br>
@@ -48,12 +50,12 @@
     <h3>PUT:</h3>
     <label for="put_tid">Tour ID:</label>
     <input type="text" name="" size="20" id="put_tid" value=""/> </br>
-    <label for="put_fname">Tour Name:</label>
+    <label for="put_tname">Tour Name:</label>
     <input type="text" name="tour_name" value="" size="20" id="put_tname"/> </br>
+    <label for="location">Location:</label>
+    <input type="text" name="put_location"  size="20" id="put_loc"/> </br>
     <label for="put_videoPlaceholder">Video replacement (placeholder):</label>
     <input type="text" name="put_videoPlaceholder" value="" size="20" id="put_videoPlaceholder"/>
-    <label for="put_enrolled">Enrolled</label>
-    <input type="checkbox" name="enrolled" size="20" id="put_enrolled"/> </br>
     <button id="put_btn">Update</button> </br>
 
     </br>
