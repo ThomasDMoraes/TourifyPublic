@@ -18,8 +18,7 @@
         forms for other APIs for testing.</p>
     <!-- POST form -->
     <!-- (update action API path) -->
-    <form class="row g-3 col-5" action="http://localhost:5500/uploadTour" method="post" target="_blank">
-        <h3>POST:</h3>
+    <div class="row g-3 col-5">        <h3>POST:</h3>
         <div>
             <label class="form-label" for="post_tname">Tour Name:</label>
             <input class="form-control" type="text" name="tour_name" value="" size="20" id="post_tname"/>
@@ -30,11 +29,11 @@
         </div>
         <!-- video file submission (research needed) -->
         <div>
-            <label class="form-label" for="post_video">Video upload:</label> <br/>
+            <label class="form-label" for="post_video">3D Video upload:</label> <br/>
             <input class="form-control" type="file" name="post_video" id="post_video"/>
         </div>
-        <input class="btn btn-primary col-5" type="submit" value="Submit"/> 
-    </form>
+        <button class="btn btn-primary col-5" id="post_btn">UPLOAD</button> 
+    </div>
     </br>
     <!-- GET ID form (might not be used, move to separate HTML file later) -->
     <div class="row g-3 col-5">
@@ -78,7 +77,7 @@
             <input class="form-control" type="file" name="put_video" id="put_video"/>
         </div>
     </br>
-        <button class="btn btn-primary col-5" id="put_btn">Update</button>
+        <button class="btn btn-primary col-5" id="put_btn">UPDATE</button>
     </div>
     </br>
     <!-- DELETE form, may remove later and replace with ID wit name match (move to separate HTML file later) -->
@@ -88,7 +87,7 @@
             <label class="form-label" for="del_tid">Tour ID:</label>
             <input class="form-control" type="text" name="tour_id" value="" size="20" id="del_tid"/>
         </div>
-        <button class="btn btn-primary col-5" id="del_btn">Delete</button>
+        <button class="btn btn-primary col-5" id="del_btn">DELETE</button>
     </div>
 
     <!--JavaScript file -->

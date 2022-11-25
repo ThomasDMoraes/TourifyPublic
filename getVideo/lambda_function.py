@@ -22,27 +22,41 @@ def lambda_handler(event, context):
         )
         #response sent back to the client
         response = {
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,GET',
+                'Access-Control-Allow-Origin': '*'
+            },
             'statusCode': int(data['ResponseMetadata']['HTTPStatusCode']),
-            'body': json.dumps(str(data['Items']))
+            'body': json.dumps(data['Items'])
         }
         
     #GET (by id) API endpoint
     elif (path == '/tours/id'):
         #retrieving request id parameter
         id = str(event['queryStringParameters']['id'])
+        print("id: " + id)
         #searching for a SINGLE matching item
         data = table.get_item(
             Key = {'id' : id }
         )
+        print(data)
         #response sent back to the client
         response = {
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,GET',
+                'Access-Control-Allow-Origin': '*'
+            },
             'statusCode': int(data['ResponseMetadata']['HTTPStatusCode']),
-            'body': json.dumps(str(data['Item']))
+            'body': json.dumps(data['Item'])
         }
+        print(response)
         
     #POST (for video info) API endpoint
     #upgrade to add later: check for duplicates before inserting, return error message if one is found
     elif (path == '/tours/upload'):
+        """ ORIGINAL: TAKES APPLICATION/JSON, SO CHANGE ON THE API GATEWAY HEADER BACK."""
         #retrieving request data, converting from JSON to a python dictionary
         reqData = json.loads(event['body'])
         #UUID used to make a unique primary key id
@@ -51,10 +65,17 @@ def lambda_handler(event, context):
         
         #adding the item to the table
         table.put_item(Item = reqData)
+        
+        message = {'message': 'Your tour has been uploaded!'} #make one for error also based on status code later
         #response sent back to the client
         response = {
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,POST',
+                'Access-Control-Allow-Origin': '*'
+            },
             'statusCode' : 200,
-            'body' : 'Your video has been uploaded!'
+            'body' : json.dumps(message)
         }
         
     elif (path == '/tours/update'):
@@ -79,10 +100,9 @@ def lambda_handler(event, context):
             attributeValues.update({':value'+str(i) : item[1]})
             i += 1
         
-        print(expStr)    
-        print(attributeValues)
-        print(attributeNames)
-        
+        #print(expStr)    
+        #print(attributeValues)
+        #print(attributeNames)
         
         #updates the item with corresponding key using the given attributes. Can add parameters to return the modified item.
         table.update_item(Key = key,
@@ -90,10 +110,17 @@ def lambda_handler(event, context):
             ExpressionAttributeValues = attributeValues,
             ExpressionAttributeNames = attributeNames
         )
+        
+        message = {'message': 'Your tour has been updated!'} #make one for error also based on status code later
         #response sent back to the client
         response = {
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,PUT',
+                'Access-Control-Allow-Origin': '*'
+            },
             'statusCode' : 200,
-            'body' : 'Your video has been updated!'
+            'body' : json.dumps(message)
         }
         
     #DELETE (by id) API endpoint
@@ -104,10 +131,17 @@ def lambda_handler(event, context):
         table.delete_item(
             Key = {'id' : id }
         )
+        
+        message = {'message': 'Tour id='+id+' has been deleted!'} #make one for error also based on status code later
         #response sent back to the client. Can add a retrieval for the item before deleting, and return here (like a pop())
         response = {
+            'headers': {
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'OPTIONS,DELETE',
+                'Access-Control-Allow-Origin': '*'
+            },
             'statusCode': 200,
-            'body': json.dumps('Item deleted for id='+id)
+            'body': json.dumps(message)
         }
         
     return response
