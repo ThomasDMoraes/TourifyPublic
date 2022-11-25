@@ -37,31 +37,33 @@
     </form>
     </br>
     <!-- GET ID form (might not be used, move to separate HTML file later) -->
-    <form class="row g-3 col-5" action="http://localhost:5500/tours/" method="get" id="get_id_form" target="_blank">
+    <div class="row g-3 col-5">
         <h3>GET (by id):</h3>
         <div>
             <label class="form-label" for="get_tid">Tour ID:</label>
-            <input class="form-control" type="text" name="tour_id" size="20" id="get_tid" value=""/>
+            <input class="form-control" type="text" name="tour_id" size="40" id="get_tid" value=""/>
         </div>
-        <input class="btn btn-primary col-5" type="submit" value="Submit"/> 
-    </form>
+        <button class="btn btn-primary col-5" id="get_id_btn">SEARCH</button>
+    </div>
     </br>
     <!-- GET (Search list) form (move to separate HTML file later) -->
-    <form class="row g-3 col-5" action="http://localhost:5500/tours" method="get" target="_blank">
+    <div class="row g-3 col-5">
         <h3>GET (by search):</h3>
         <div>
             <label class="form-label"  for="get_tname">Tour Name:</label>
             <input class="form-control" type="text" name="tour_name" value="" size="20" id="get_tname"/> </br>
+            <label class="form-label"  for="get_loc">Location:</label>
+            <input class="form-control" type="text" name="tour_loc" value="" size="20" id="get_loc"/> </br>
         </div>
-        <input class="btn btn-primary col-5" type="submit" value="Submit"/> 
-    </form>
+        <button class="btn btn-primary col-5" id="get_search_btn">SEARCH</button>
+    </div>
     </br>
     <!-- PUT info (not an actual form) (move to separate HTML file later) -->
     <div class="row g-3 col-5">
         <h3>PUT:</h3>
         <div>
             <label class="form-label" for="put_tid">Tour ID:</label>
-            <input class="form-control" type="text" name="" size="20" id="put_tid" value=""/>
+            <input class="form-control" type="text" name="" size="40" id="put_tid" value=""/>
         </div>
         <div>
             <label class="form-label" for="put_tname">Tour Name:</label>
