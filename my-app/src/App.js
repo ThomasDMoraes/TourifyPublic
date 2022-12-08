@@ -1,32 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
 import Home from './components/Home'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
-function App() {
+const App = () => {
+  const [data, setData] = useState({})
+  const[tourId, setTourId] = useState("")
+  /* useEffect(() => {
+    async function getByTourId() {
+      console.log('Getting by tour ID...')
+      const res = await fetch(`http://localhost:8000/api/tourId/${'d92a08b2-982f-457b-b421-a856929030c9'}`) //tourId instead of string
+      if (!res.ok) {
+        window.alert(`Unable to fetch tour. Please try again later`)
+        return;
+      }
+      const tourData = await res.json()
+            if (!tourData) {
+                console.log('Tour is undefined')
+            }
+
+            console.log('tour: ', tourData);
+            setData(tourData)
+    } 
+    getByTourId()
+  }, []
+  )
+  */
   return (
     <div className="App">
       <BrowserRouter>
-        <Link to='/'>Home</Link>
+        <Navbar/>
 
-        <Routes>
+        {/* <Routes>
           <Route path = '/' elements = {<Home/>} />
-        </Routes>
+        </Routes> */}
       </BrowserRouter>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Home/>
     </div>
   );
 }
