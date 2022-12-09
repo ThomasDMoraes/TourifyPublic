@@ -1,0 +1,39 @@
+*{ 
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  width:100vw;
+}
+
+.App {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+
+.toggle_buttons {
+  margin-bottom: .25rem;
+}
+
+nav {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
