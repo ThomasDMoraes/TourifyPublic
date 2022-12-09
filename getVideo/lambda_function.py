@@ -4,6 +4,7 @@ import uuid
 
 dynamoDB = boto3.resource('dynamodb')
 table = dynamoDB.Table('tours')
+s3 = boto3.resource('s3')
 
 def lambda_handler(event, context):
     path = event['path']
@@ -56,12 +57,18 @@ def lambda_handler(event, context):
     #POST (for video info) API endpoint
     #upgrade to add later: check for duplicates before inserting, return error message if one is found
     elif (path == '/tours/upload'):
-        """ ORIGINAL: TAKES APPLICATION/JSON, SO CHANGE ON THE API GATEWAY HEADER BACK."""
         #retrieving request data, converting from JSON to a python dictionary
         reqData = json.loads(event['body'])
         #UUID used to make a unique primary key id
         keyDict = {'id' : str(uuid.uuid4())} 
         reqData.update(keyDict)
+        #for file upload (need to pass a 'key' parameter for file name when posting to s3)
+        #possibly check on s3 if the file was uploaded (future code update)
+        #also add try/except statements to send meaningful messages / status codes on error for dynamo and s3
+        if(reqData.get("key", False)):
+            fileKey = str(reqData.pop("key"))
+            tourUrl = {'url' : "https://tourify-tours.s3.amazonaws.com/" + fileKey}
+            reqData.update(tourUrl)
         
         #adding the item to the table
         table.put_item(Item = reqData)
