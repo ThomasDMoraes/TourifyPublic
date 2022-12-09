@@ -7,7 +7,8 @@ import Navbar from './components/Navbar';
 const App = () => {
   const [data, setData] = useState({})
   const[tourId, setTourId] = useState("")
-  /* useEffect(() => {
+  /*
+   useEffect(() => {
     async function getByTourId() {
       console.log('Getting by tour ID...')
       const res = await fetch(`http://localhost:8000/api/tourId/${'d92a08b2-982f-457b-b421-a856929030c9'}`) //tourId instead of string
