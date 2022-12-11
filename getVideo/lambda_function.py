@@ -42,6 +42,13 @@ def lambda_handler(event, context):
             Key = {'id' : id }
         )
         print(data)
+        try:
+            print("item found: "+ str(data['Item']))
+            body = data['Item']
+        except:
+            message = {'message': 'item not found.'}
+            body = message
+        
         #response sent back to the client
         response = {
             'headers': {
@@ -50,7 +57,7 @@ def lambda_handler(event, context):
                 'Access-Control-Allow-Origin': '*'
             },
             'statusCode': int(data['ResponseMetadata']['HTTPStatusCode']),
-            'body': json.dumps(data['Item'])
+            'body': json.dumps(body)
         }
         print(response)
         
@@ -135,11 +142,21 @@ def lambda_handler(event, context):
         #retrieving request id parameter
         id = str(event['queryStringParameters']['id'])
         #searching for a SINGLE matching item
-        table.delete_item(
-            Key = {'id' : id }
+        findResult = table.get_item(
+            Key = {'id' : id}
         )
+        print("delete result:" + str(findResult))
+        try:
+            print("item found: " + str(findResult['Item']))
+            delResult = table.delete_item(
+                Key = {'id' : id }
+            )
         
-        message = {'message': 'Tour id='+id+' has been deleted!'} #make one for error also based on status code later
+            message = {'message': 'Tour id='+id+' has been deleted!'}
+        except:
+            message = {'message': 'Tour id='+id+' does not exist!'}
+
+        #make one for error also based on status code later
         #response sent back to the client. Can add a retrieval for the item before deleting, and return here (like a pop())
         response = {
             'headers': {
@@ -147,7 +164,7 @@ def lambda_handler(event, context):
                 'Access-Control-Allow-Methods': 'OPTIONS,DELETE',
                 'Access-Control-Allow-Origin': '*'
             },
-            'statusCode': 200,
+            'statusCode': findResult['ResponseMetadata']['HTTPStatusCode'],
             'body': json.dumps(message)
         }
         

@@ -53,7 +53,8 @@
             <input class="form-control" type="file" name="file" id="post_file"/>
         </div>
         <!--(END OF SIGNING PART)-->
-        <button class="btn btn-primary col-5" id="post_btn">UPLOAD</button> 
+        <button class="btn btn-primary col-5" id="post_btn">UPLOAD</button>
+        <p id="post_res"></p>
     </div>
     </br>
 
@@ -65,6 +66,7 @@
             <input class="form-control" type="text" name="tour_id" size="40" id="get_tid" value=""/>
         </div>
         <button class="btn btn-primary col-5" id="get_id_btn">SEARCH</button>
+        <p id="getId_res"></p>
     </div>
     </br>
     <!-- GET (Search list) form (move to separate HTML file later) -->
@@ -77,6 +79,7 @@
             <input class="form-control" type="text" name="tour_loc" value="" size="20" id="get_loc"/> </br>
         </div>
         <button class="btn btn-primary col-5" id="get_search_btn">SEARCH</button>
+        <table id="getSearch_res"></table>
     </div>
     </br>
     <!-- PUT info (not an actual form) (move to separate HTML file later) -->
@@ -100,6 +103,7 @@
         </div>
     </br>
         <button class="btn btn-primary col-5" id="put_btn">UPDATE</button>
+        <p id="put_res"></p>
     </div>
     </br>
     <!-- DELETE form, may remove later and replace with ID wit name match (move to separate HTML file later) -->
@@ -110,6 +114,7 @@
             <input class="form-control" type="text" name="tour_id" value="" size="20" id="del_tid"/>
         </div>
         <button class="btn btn-primary col-5" id="del_btn">DELETE</button>
+        <p id="del_res"></p>
     </div>
 
     <!--JavaScript file -->
