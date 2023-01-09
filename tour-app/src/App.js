@@ -4,7 +4,6 @@ import Home from './components/Home'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
-// test this is a test
 const App = () => {
   const [data, setData] = useState({})
   const[tourId, setTourId] = useState("")
