@@ -1,12 +1,13 @@
 import './App.css';
-import { useState, useEffect } from 'react';
-import Home from './components/Home'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './components/Home';
+import Search from './components/Search';
+import Post from './components/Post';
+import Delete from './components/Delete';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 const App = () => {
-  const [data, setData] = useState({})
-  const[tourId, setTourId] = useState("")
+
   /*
    useEffect(() => {
     async function getByTourId() {
@@ -30,14 +31,13 @@ const App = () => {
   */
   return (
     <div className="App">
-      <BrowserRouter>
         <Navbar/>
-
-        {/* <Routes>
-          <Route path = '/' elements = {<Home/>} />
-        </Routes> */}
-      </BrowserRouter>
-      <Home/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="search" element={<Search />} />
+          <Route path="post" element={<Post />} />
+          <Route path="delete" element={<Delete />} />
+        </Routes>
     </div>
   );
 }
