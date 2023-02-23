@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Search from './components/Search';
 import Post from './components/Post';
 import Delete from './components/Delete';
+import Put from './components/Put';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="search" element={<Search />} />
           <Route path="post" element={<Post />} />
           <Route path="delete" element={<Delete />} />
+          <Route path="put" element={<Put />} />
         </Routes>
     </div>
   );
