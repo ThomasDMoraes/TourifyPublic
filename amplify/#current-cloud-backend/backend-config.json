@@ -1,0 +1,45 @@
+{
+  "auth": {
+    "tourify": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_tourify_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_auth_tourify_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_auth_tourify_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_auth_tourify_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifye62a1f8c726c4-staging-55540-authRole",
+      "UnauthRoleArn": "arn:aws:iam::252089665278:role/amplify-amplifye62a1f8c726c4-staging-55540-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::252089665278:role/amplify-amplifye62a1f8c726c4-staging-55540-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplifye62a1f8c726c4-staging-55540-deployment",
+      "UnauthRoleName": "amplify-amplifye62a1f8c726c4-staging-55540-unauthRole",
+      "StackName": "amplify-amplifye62a1f8c726c4-staging-55540",
+      "StackId": "arn:aws:cloudformation:us-east-1:252089665278:stack/amplify-amplifye62a1f8c726c4-staging-55540/75eff250-6af3-11ed-a25f-12a7564bdb9d",
+      "AmplifyAppId": "d16c8u5n68el2a"
+    }
+  },
+  "auth": {
+    "tourify": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "output": {
+        "UserPoolId": "us-east-1_7hyX9W1Hh",
+        "UserPoolName": "website-users",
+        "AppClientID": "hbd3s93h472qkohe6a3v5h7c2",
+        "AppClientIDWeb": "hbd3s93h472qkohe6a3v5h7c2",
+        "HostedUIDomain": "tourality"
+      },
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "signupAttributes": [
+          "PREFERRED_USERNAME",
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_UPPERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS"
+          ]
+        },
+        "mfaConfiguration": "OPTIONAL",
+        "mfaTypes": [
+          "TOTP"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "lastPushTimeStamp": "2023-02-19T21:39:07.698Z"
+    }
+  }
+}
