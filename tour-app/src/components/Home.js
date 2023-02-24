@@ -10,6 +10,7 @@ function Home() {
             <Link to="/search">Search</Link>
             <Link to="/post">Post</Link>
             <Link to="/delete">Delete</Link>
+            <Link to="/put">Put</Link>
         </div>
     )
 }
