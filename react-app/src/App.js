@@ -10,7 +10,6 @@ import LayoutDefault from './layouts/LayoutDefault';
 
 // Views 
 import Home from './views/Home';
-import Signup from './components/sections/Signup';
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -21,7 +20,7 @@ const trackPage = page => {
 };
 
 const App = () => {
-  <Signup />
+  
 /*
   const childRef = useRef();
   let location = useLocation();
@@ -33,17 +32,19 @@ const App = () => {
     trackPage(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-
+*/
   return (
-    <ScrollReveal
+    <Signup />
+    /*<ScrollReveal
       ref={childRef}
       children={() => (
         <Switch>
           <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
         </Switch>
       )} />
+      */
   );
-  */
+  
 }
 
 export default App;
