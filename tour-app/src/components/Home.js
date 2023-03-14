@@ -11,6 +11,7 @@ function Home() {
             <Link to="/post">Post</Link>
             <Link to="/delete">Delete</Link>
             <Link to="/put">Put</Link>
+            <Link to="/login">Login</Link>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import Search from './components/Search';
 import Post from './components/Post';
 import Delete from './components/Delete';
 import Put from './components/Put';
+import Login from './components/Login';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="post" element={<Post />} />
           <Route path="delete" element={<Delete />} />
           <Route path="put" element={<Put />} />
+          <Route path="login" element={<Login />} />
         </Routes>
     </div>
   );
