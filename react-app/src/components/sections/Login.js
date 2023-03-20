@@ -1,23 +1,30 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+import {CognitoUser, AuthenticationDetails} from "amazon-cognito-identity-js";
 import UserPool from "./UserPool";
+import { AccountContext } from "./Account";
 
-const Signup = () => {
+
+const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const {authenticate} = useContext(AccountContext);
+
     const onSubmit = (event) => {
         event.preventDefault();
-        UserPool.signUp(email, password, [], null, (err, data) =>{
-            if (err) {
-                console.error(err);
-            }
-            console.log(data);
-        });
+
+        authenticate(email, password)
+        .then(data => {
+            console.log("Logged in!", data);
+        })
+        .catch(err => {
+            console.error("Failed to login", err);
+        })
+
     };
 
     return (
-        <div className="container-sm" data-reveal-delay="200">
-            <h1 className="mt-0 mb-16 reveal-from-bottom">Sign up Page</h1>
+        <div>
             <form onSubmit={onSubmit}>
                 <label htmlFor="email">Email</label>
                 <input
@@ -31,10 +38,10 @@ const Signup = () => {
                     onChange={(event) => setPassword(event.target.value)}
                 ></input>
 
-                <button type="submit">Signup</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     );
 };
 
-export default Signup;
+export default Login;

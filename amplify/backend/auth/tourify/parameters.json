@@ -1,0 +1,28 @@
+{
+  "authSelections": "userPoolOnly",
+  "resourceName": "tourify",
+  "serviceType": "imported",
+  "region": "us-east-1",
+  "aliasAttributes": [
+    "email"
+  ],
+  "authProvidersUserPool": [],
+  "requiredAttributes": [
+    "preferred_username",
+    "email"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers",
+    "Requires Symbols"
+  ],
+  "mfaConfiguration": "OPTIONAL",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": [
+    "TOTP"
+  ]
+}

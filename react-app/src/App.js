@@ -4,6 +4,9 @@ import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
 import Signup from './components/sections/Signup';
+import Login from './components/sections/Login';
+import { Account } from './components/sections/Account';
+import { Route } from 'react-router-dom';
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
@@ -21,7 +24,6 @@ const trackPage = page => {
 
 const App = () => {
   
-/*
   const childRef = useRef();
   let location = useLocation();
 
@@ -32,17 +34,23 @@ const App = () => {
     trackPage(page);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-*/
+
   return (
-    <Signup />
-    /*<ScrollReveal
+    //<Signup />
+    <ScrollReveal
       ref={childRef}
       children={() => (
-        <Switch>
+        <Switch>        
           <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+          <Account>
+            <Route path="/signup"><Signup /></Route>     
+            <Route path="/login"><Login /></Route>    
+            <Route path="/account"><Account /></Route>   
+          </Account> 
         </Switch>
+         
       )} />
-      */
+      
   );
   
 }

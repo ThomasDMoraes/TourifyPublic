@@ -1,0 +1,69 @@
+{
+  "auth": {
+    "tourify": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_tourify_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_auth_tourify_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_auth_tourify_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_auth_tourify_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "tourify"
+        }
+      ]
+    },
+    "AMPLIFY_storage_tourify37bbd0bc_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "tourify37bbd0bc"
+        }
+      ]
+    },
+    "AMPLIFY_storage_tourify37bbd0bc_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "tourify37bbd0bc"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "tourify37bbd0bc": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
+    }
+  }
+}
