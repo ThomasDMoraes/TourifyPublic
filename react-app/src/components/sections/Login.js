@@ -16,6 +16,7 @@ const Login = () => {
         authenticate(email, password)
         .then(data => {
             console.log("Logged in!", data);
+            window.location.href = '/homeLog'
         })
         .catch(err => {
             console.error("Failed to login", err);

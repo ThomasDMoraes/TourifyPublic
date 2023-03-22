@@ -1,6 +1,5 @@
-import { SearchIcon } from "../Icons";
 import Button from "./Button";
-import { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 function Search() {
     const [showId, setShowId] = useState(true);
@@ -129,7 +128,7 @@ function Search() {
                 
             </div>
             <div>
-                <Button icon={SearchIcon} text='Search' onClick= {()=> sendCall()}/>
+                <Button text='Search' onClick= {()=> sendCall()}/>
             </div>
 
             {response !== "" && <div>{response}</div>}

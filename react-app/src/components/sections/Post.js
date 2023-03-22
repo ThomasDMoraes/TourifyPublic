@@ -1,5 +1,5 @@
 import Button from "./Button";
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Post() {    
     
@@ -15,12 +15,9 @@ function Post() {
         console.log("given tour name:", tName); //debuging
         console.log("given tour location:", tLoc); //debuging
         console.log("given file name:", fname); //debuging    
-        
-        
+               
     }
 
-   
-    
     async function onChange(e) {
         
         const file = e.target.files[0];
@@ -40,8 +37,7 @@ function Post() {
         } catch (error){
             console.log("Error uploading file: ", error);
         }
-    }
-    
+    }    
 
     return(
         <div className="container">
@@ -65,5 +61,6 @@ function Post() {
             </div>
         </div>
         )
+    
 }
 export default Post;
