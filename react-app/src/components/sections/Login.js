@@ -25,7 +25,8 @@ const Login = () => {
     };
 
     return (
-        <div>
+        <div className="container-sm" data-reveal-delay="200">
+            <h1 className="mt-0 mb-16 reveal-from-bottom">Login Page</h1>
             <form onSubmit={onSubmit}>
                 <label htmlFor="email">Email</label>
                 <input

@@ -1,5 +1,6 @@
 import Button from "./Button";
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 function Search() {
     const [showId, setShowId] = useState(true);
@@ -106,6 +107,7 @@ function Search() {
 
     return(
     <div className="container">
+        <Link to="/homeLog">Home</Link>
         <h1>Search Page</h1>
         <div className="content">
             <div className = "toggle_buttons">

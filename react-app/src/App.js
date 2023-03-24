@@ -12,7 +12,6 @@ import Delete from './components/sections/Delete';
 import Put from './components/sections/Put';
 import { Account } from './components/sections/Account';
 import { Route } from 'react-router-dom';
-import Navbar from './components/sections/Navbar';
 
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
@@ -46,8 +45,7 @@ const App = () => {
     <ScrollReveal
       ref={childRef}
       children={() => (
-        <>
-        <Navbar /> 
+        <>        
         <Switch>                 
           <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
           <Account>

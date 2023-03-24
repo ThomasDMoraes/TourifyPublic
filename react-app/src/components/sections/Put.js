@@ -1,5 +1,6 @@
 import Button from "./Button";
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 
 function Put() {    
     
@@ -58,6 +59,7 @@ function Put() {
 
     return(
         <div className="container">
+            <Link to="/homeLog">Home</Link>
             <h1>Replace info Page</h1>
             <div className="content">                
                 <div className="Upload">

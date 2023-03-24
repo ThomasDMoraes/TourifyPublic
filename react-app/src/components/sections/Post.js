@@ -1,5 +1,22 @@
 import Button from "./Button";
 import React, { useState } from 'react';
+import {Amplify, Storage} from 'aws-amplify';
+import { Link } from 'react-router-dom'
+
+Amplify.configure({   
+    Auth: {
+        identityPoolId: 'us-east-1:3e9b7212-4b0b-4d06-b418-cd8ec3dd29db', //REQUIRED - Amazon Cognito Identity Pool ID
+        region: 'us-east-1', // REQUIRED - Amazon Cognito Region
+        userPoolId: 'us-east-1_xUbKBXTi6', //OPTIONAL - Amazon Cognito User Pool ID
+        userPoolWebClientId: '5bo6g3iveh8d6rcmsg7qhd4pka', //OPTIONAL - Amazon Cognito Web Client ID
+    }, 
+    Storage: {
+        AWSS3: {
+            bucket: 'tourify-tours', //REQUIRED -  Amazon S3 bucket name
+            region: 'us-east-1', //OPTIONAL -  Amazon service region
+        }
+    }
+})
 
 function Post() {    
     
@@ -7,7 +24,8 @@ function Post() {
     const [fname, setFname] = useState("");
     const [tName, setTName] = useState("");
     const [tLoc, setTLoc] = useState("");
-    const [file, setFile] = useState([]);
+    const [in_file, setIn_file] = useState('');
+    
 
 
     let sendCall = () => {
@@ -15,14 +33,26 @@ function Post() {
         console.log("given tour name:", tName); //debuging
         console.log("given tour location:", tLoc); //debuging
         console.log("given file name:", fname); //debuging    
-               
+        console.log("given file:", in_file); //debuging  
+        onChange()      
     }
 
-    async function onChange(e) {
-        
-        const file = e.target.files[0];
+    async function handleImageAsFile(e){
+        console.log("e:",e);
+        //image var holds the file object which has a type property 
+        const image = e.target.files[0];          
+        console.log("image type:",image.type); // this will output the mime, i.e "image/png" or "image/jpg"
+        setIn_file(image);
+        console.log('file:',in_file);   
 
-        let fileType = file.type
+     }
+
+    async function onChange() {      
+        console.log("given file:", in_file); //debuging  
+        
+        let fileType = in_file.type
+
+        console.log("given file type:", fileType); //debuging  
 
         if (fileType.substring(0, 5) != "image" && fileType.substring(0, 5) != "video") {
             console.log("Error: Input files must be of type image or video.");
@@ -31,8 +61,8 @@ function Post() {
         }
 
         try {
-            await Storage.put(file.name, file, {
-                contentType: fileType.substring(0,5),
+            await Storage.put("tours/" + in_file.name, in_file, {
+                contentType: "image",
             });
         } catch (error){
             console.log("Error uploading file: ", error);
@@ -41,6 +71,7 @@ function Post() {
 
     return(
         <div className="container">
+            <Link to="/homeLog">Home</Link>
             <h1>Post Page</h1>
             <div className="content">                
                 <div className="Upload">
@@ -50,13 +81,11 @@ function Post() {
                             value={tLoc} onChange={(e) => setTLoc(e.target.value)}></input>
                                          
                 </div>
-                <div>
-                    <input id='input_tourLocation' type='text' placeholder="Enter File Name" 
-                    value={fname} onChange={(e) => setFname(e.target.value)}></input>    
-                    <input id='post_file' type='file' value={file} onChange={(e) => setFile(e.target.value)}></input>   
+                <div>                       
+                    <input id='post_file' type='file' onChange={(e) => handleImageAsFile(e)}></input> 
                 </div>
                 <div>
-                    <Button text='Upload' onClick={sendCall()}/>
+                    <Button text='Upload' onClick= {()=> sendCall()}/>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "amazon-cognito-identity-js": "^6.1.2",
+    "aws-amplify": "^5.0.21",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "react": "^16.13.1",

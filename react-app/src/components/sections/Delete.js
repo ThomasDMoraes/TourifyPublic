@@ -1,6 +1,6 @@
 import Button from "./Button";
 import React, { useState } from 'react';
-
+import { Link } from 'react-router-dom'
 
 function Delete() {    
     
@@ -43,6 +43,7 @@ function Delete() {
     
     return(
         <div className="container">
+            <Link to="/homeLog">Home</Link>
             <h1>Delete Page</h1>
             <div className="content">                
                 <div className="Upload">
