@@ -34,7 +34,9 @@ function Post() {
         console.log("given tour location:", tLoc); //debuging
         console.log("given file name:", fname); //debuging    
         console.log("given file:", in_file); //debuging  
-        onChange()      
+        onChange()    
+        let getResponse
+        getResponse = postTour(tName)  
     }
 
     async function handleImageAsFile(e){
@@ -44,7 +46,6 @@ function Post() {
         console.log("image type:",image.type); // this will output the mime, i.e "image/png" or "image/jpg"
         setIn_file(image);
         console.log('file:',in_file);   
-
      }
 
     async function onChange() {      
@@ -68,6 +69,36 @@ function Post() {
             console.log("Error uploading file: ", error);
         }
     }    
+
+    async function postTour(tName){
+        let uploadKey = in_file.name;
+        uploadKey = "tours/"+ uploadKey;
+        let url = "https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/upload";
+        let input_data = {
+            'tourName': tName,
+            'location': tLoc,
+            'key': uploadKey
+        };
+        console.log("input data:", input_data);
+        console.log("url: ", url);
+        
+        fetch(url, 
+            {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(input_data)
+            })
+            .then((response) => response.json().then((data) => {
+                console.log("response:", response);
+                console.log("data:", data);
+                window.alert(data.message);
+                //document.getElementById("post_res").innerHTML = data.message;
+            }))
+            .catch((error) => {
+                console.log("error:", error);
+                window.alert(error);
+            })
+    }
 
     return(
         <div className="container">

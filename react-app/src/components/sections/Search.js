@@ -11,9 +11,6 @@ function Search() {
     const [loc, setLoc] = useState("");
     const [response, setResponse] = useState("");
 
-    //taken from App.js
-    const [tData, setData] = useState({})
-
     //taken from App.js and modified
     async function getByTourId(id) {
         console.log("Id =", id)
@@ -40,23 +37,7 @@ function Search() {
 
            setResponse(str2);
            return tData;
-        })) 
-
-        //tourId instead of string (modified)
-        /*if (!res.ok) {
-          window.alert('Unable to fetch tour. Please try again later')
-          return;
-        }
-        const tourData = await res.json()
-              if (!tourData) {
-                  console.log('Tour is undefined')
-              }
-  
-              console.log('tour: ', tourData);
-              setData(tourData)
-              return data;
-              */
-            
+        }))                 
       } 
 
 
