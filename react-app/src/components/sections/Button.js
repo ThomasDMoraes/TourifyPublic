@@ -1,3 +1,4 @@
+import React from 'react';
 function Button(props) {
     const { text, onClick } = props;
 

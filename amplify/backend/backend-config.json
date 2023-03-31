@@ -40,6 +40,30 @@
           "resourceName": "tourify"
         }
       ]
+    },
+    "AMPLIFY_storage_tourify37bbd0bc_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "tourify37bbd0bc"
+        }
+      ]
+    },
+    "AMPLIFY_storage_tourify37bbd0bc_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "tourify37bbd0bc"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "tourify37bbd0bc": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
     }
   }
 }

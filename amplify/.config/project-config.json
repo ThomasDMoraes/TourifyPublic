@@ -8,9 +8,15 @@
   "javascript": {
     "framework": "react",
     "config": {
+<<<<<<< HEAD
       "SourceDir": "C:\\Users\\thoma\\OneDrive\\Documents\\EGN4952C_Tourify\\tourify",
       "DistributionDir": "https://github.com/ThomasDMoraes/tourify.git",
       "BuildCommand": "",
+=======
+      "SourceDir": "src",
+      "DistributionDir": "build",
+      "BuildCommand": "npm.cmd run-script build",
+>>>>>>> 197ca43db715210f1be294f078307ad5675db26e
       "StartCommand": "npm.cmd run-script start"
     }
   }

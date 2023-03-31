@@ -5,6 +5,8 @@ import ButtonGroup from '../elements/ButtonGroup';
 import Button from '../elements/Button';
 import Image from '../elements/Image';
 import Modal from '../elements/Modal';
+import {Navigate} from "react-router-dom"
+import Signup from './Signup';
 
 const propTypes = {
   ...SectionProps.types
@@ -52,6 +54,10 @@ const Hero = ({
     bottomDivider && 'has-bottom-divider'
   );
 
+ function handleClick(){
+  window.location.href = '/signup'
+ }
+
   return (
     <section
       {...props}
@@ -69,7 +75,7 @@ const Hero = ({
                 </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
-                  <Button tag="a" color="primary" wideMobile href="https://cruip.com/">
+                  <Button tag="a" color="primary" onClick={handleClick}>
                     Sign Up
                     </Button>
                   <Button tag="a" color="dark" wideMobile href="https://github.com/cruip/open-react-template/">

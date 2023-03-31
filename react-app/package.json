@@ -4,12 +4,13 @@
   "private": true,
   "dependencies": {
     "amazon-cognito-identity-js": "^6.1.2",
+    "aws-amplify": "^5.0.21",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
-    "react-router-dom": "^5.1.2",
+    "react-router-dom": "^5.3.4",
     "react-scripts": "^5.0.1",
     "sass": "^1.49.7"
   },

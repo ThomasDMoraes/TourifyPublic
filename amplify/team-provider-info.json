@@ -10,6 +10,22 @@
       "StackName": "amplify-amplifye62a1f8c726c4-staging-55540",
       "StackId": "arn:aws:cloudformation:us-east-1:252089665278:stack/amplify-amplifye62a1f8c726c4-staging-55540/75eff250-6af3-11ed-a25f-12a7564bdb9d",
       "AmplifyAppId": "d16c8u5n68el2a"
+    },
+    "categories": {
+      "auth": {
+        "tourify": {
+          "userPoolId": "us-east-1_7hyX9W1Hh",
+          "userPoolName": "website-users",
+          "webClientId": "hbd3s93h472qkohe6a3v5h7c2",
+          "nativeClientId": "hbd3s93h472qkohe6a3v5h7c2"
+        }
+      },
+      "storage": {
+        "tourify37bbd0bc": {
+          "bucketName": "tourify-tours",
+          "region": "us-east-1"
+        }
+      }
     }
   }
 }
