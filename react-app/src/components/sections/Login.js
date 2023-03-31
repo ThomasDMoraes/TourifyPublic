@@ -1,6 +1,4 @@
 import React, {useState, useContext} from "react";
-import {CognitoUser, AuthenticationDetails} from "amazon-cognito-identity-js";
-import UserPool from "./UserPool";
 import { AccountContext } from "./Account";
 
 
@@ -18,7 +16,8 @@ const Login = () => {
             console.log("Logged in!", data);
             window.location.href = '/homeLog'
         })
-        .catch(err => {
+        .catch(err => {            
+            window.alert("Incorrect login information")
             console.error("Failed to login", err);
         })
 
@@ -26,8 +25,10 @@ const Login = () => {
 
     return (
         <div className="container-sm" data-reveal-delay="200">
+            <p> </p>
             <h1 className="mt-0 mb-16 reveal-from-bottom">Login Page</h1>
             <form onSubmit={onSubmit}>
+                <p> </p>
                 <label htmlFor="email">Email</label>
                 <input
                     value={email}

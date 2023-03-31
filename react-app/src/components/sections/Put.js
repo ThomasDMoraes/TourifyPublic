@@ -148,10 +148,12 @@ function Put() {
                             value={tLoc} onChange={(e) => setTLoc(e.target.value)}></input>                         
                 </div>
                 <div>
+                    <p> </p>
                     <label className="form-label" for="put_file">Video replacement: </label>
                     <input id='put_file' type='file' onChange={(e) => handleImageAsFile(e)}></input>
                 </div>
                 <div>
+                    <p> </p>
                     <Button text='Upload' onClick= {()=> sendCall()}/>
                 </div>
             </div>
