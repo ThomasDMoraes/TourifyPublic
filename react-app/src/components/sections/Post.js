@@ -2,6 +2,7 @@ import Button from "./Button";
 import React, { useState } from 'react';
 import {Amplify, Storage} from 'aws-amplify';
 import { Link } from 'react-router-dom'
+import ImageMap from './ImageMap';
 
 Amplify.configure({   
     Auth: {
@@ -125,6 +126,9 @@ function Post() {
                 <div>
                     <Button text='Upload' onClick= {()=> sendCall()}/>
                 </div>
+
+                {<ImageMap></ImageMap>}
+
             </div>
         </div>
         )
