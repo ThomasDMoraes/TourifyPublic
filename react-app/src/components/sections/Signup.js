@@ -32,7 +32,7 @@ const Signup = () => {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 ></input>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password"> Password</label>
                 <input
                     type="password"
                     value={password}
@@ -40,7 +40,7 @@ const Signup = () => {
                 ></input>
                 <button type="submit">Signup</button>
                 <p> </p>
-                <p>Password must contain <br></br>1 uppercase letter <br></br>1 lowercase letter <br></br>1 number <br></br>1 special character</p>
+                <p>Password must contain: <br></br>1 uppercase letter <br></br>1 lowercase letter <br></br>1 number <br></br>1 special character</p>
                 <h1> </h1>
                 <Link to="/login">Sign in</Link>
             </form>

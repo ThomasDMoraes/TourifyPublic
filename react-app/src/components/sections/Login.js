@@ -34,7 +34,7 @@ const Login = () => {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 ></input>
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password"> Password</label>
                 <input
                     type="password"
                     value={password}

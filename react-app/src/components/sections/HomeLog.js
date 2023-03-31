@@ -37,7 +37,7 @@ function Home() {
             <h1> </h1>
             <Link to="/put">
                 <Image
-                    src={require('./../../assets/images/delete.JPG')}
+                    src={require('./../../assets/images/replace.JPG')}
                     alt="Open"
                     width={70}
                     height={70} />Replace
