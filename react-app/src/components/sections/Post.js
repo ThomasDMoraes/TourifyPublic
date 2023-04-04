@@ -2,7 +2,11 @@ import Button from "./Button";
 import React, { useState } from 'react';
 import {Amplify, Storage} from 'aws-amplify';
 import { Link } from 'react-router-dom'
-import ImageMap from './ImageMap';
+import {ImageMap, getCoordinates} from './ImageMap'; //not using right now, needs to be generalized to use.
+import ImageMarker, { Marker } from "react-image-marker";
+
+
+
 
 Amplify.configure({   
     Auth: {
@@ -26,6 +30,8 @@ function Post() {
     const [tName, setTName] = useState("");
     const [tLoc, setTLoc] = useState("");
     const [in_file, setIn_file] = useState('');
+    //used for mapping
+    const [markers, setMarkers] = useState([]);
     
 
 
@@ -37,7 +43,7 @@ function Post() {
         console.log("given file:", in_file); //debuging  
         let getResponse = await postTour(tName);
         console.log("post status code:", getResponse.status);
-        if (getResponse.status == 200) {
+        if (getResponse.status && getResponse.status == 200) {
             onChange() //should be done after confirming the dynamodb post to make sure files are not created unlinked to a database record
         }
         
@@ -78,10 +84,22 @@ function Post() {
         let uploadKey = in_file.name;
         uploadKey = "tours/"+ uploadKey;
         let url = "https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/upload";
+        //getting marker coordinates
+        //let coordinates = document.getElementById("coords").value; //outdated, keeping commented for reference in case of change.
+        var coordinates = getCoordinates();
+        if (!coordinates) {
+            console.log("POST: NO COORDINATES GIVEN");
+            window.alert("Error: Please try again after marking the tour the map.");
+            return;
+        }
+        console.log("coordinates:", coordinates);
+
         let input_data = {
             'tourName': tName,
             'location': tLoc,
-            'key': uploadKey
+            'key': uploadKey,
+            'x-coordinate': coordinates.X, //current gives errors if they're not given.
+            'z-coordinate': coordinates.Z
         };
         console.log("input data:", input_data);
         console.log("url: ", url);
@@ -108,6 +126,32 @@ function Post() {
         return postRes;
     }
 
+    //map functions:
+    //called on XML
+    async function placeMarker(marker) {
+        console.log("adding marker:", marker);
+        markers.push(marker);
+        if (markers.length > 1) {
+          markers.splice(0, markers.length-1)
+        }
+        setMarkers([marker]);
+        getCoordinates();
+        //getCoordinates(markers);
+    }
+
+      //returns the marker's X/Y coordinates
+      const getCoordinates = () => {
+        console.log("markers:", markers);
+        if (markers[0]) {
+          let leftPos = markers[0].left;
+          let topPos = markers[0].top;
+          console.log("x:", leftPos, " z:", topPos);
+          //setCoords({ X:leftPos, Y: topPos });
+          return { X: leftPos, Z: topPos };
+        } 
+      };
+
+    //rendered component (form + map)
     return(
         <div className="container">
             <Link to="/homeLog">Home</Link>
@@ -127,7 +171,18 @@ function Post() {
                     <Button text='Upload' onClick= {()=> sendCall()}/>
                 </div>
 
-                {<ImageMap></ImageMap>}
+                <br/>
+                {/*<ImageMap id="postMap"></ImageMap>*/}
+                <div id="mapDiv">
+                    {/*<p id="coords" value={coords}>X={coords.X} , Y={coords.Y} </p>*/}
+                    <ImageMarker
+                        src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
+                        markers={markers}
+                        onAddMarker={(marker) => {
+                            placeMarker(marker);
+                        }}
+                    />
+                </div>
 
             </div>
         </div>

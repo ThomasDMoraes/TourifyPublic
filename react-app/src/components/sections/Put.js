@@ -34,10 +34,6 @@ function Put() {
         //console.log("given tour location:", tLoc); //debuging    
         let putResponse;
         if(in_file){
-            //let searchResponse = await getByTourId(tid); //switched to backend
-            //console.log("search response", searchResponse);
-            //Storage.remove(searchResponse.fileName); //switched to BACKEND
-
             /* //list method can be used to check what's in the bucket. only lists public/ level items. useful for debug.
             Storage.list('').then((res) => {
                 console.log("s3 obj list:" , res);
@@ -45,11 +41,12 @@ function Put() {
                 console.log("s3 obj list ERROR:", + err);
             })
             */
+
             //console.log('file name: ', searchResponse.fileName);
             putResponse = await put(tid, tName, tLoc);
             console.log("put response:", putResponse);
             console.log("status code:", putResponse.status);
-            if (putResponse.status == 200) { //add if status 200 to post file afterwards. also do this for POST method
+            if (putResponse.status && putResponse.status == 200) { //add if status 200 to post file afterwards. also do this for POST method
                 onChange();
             }
             
