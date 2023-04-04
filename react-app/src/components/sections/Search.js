@@ -1,6 +1,7 @@
 import Button from "./Button";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import ImageMarker, { Marker } from "react-image-marker";
 
 function Search() {
     const [showId, setShowId] = useState(true);
@@ -10,12 +11,14 @@ function Search() {
     const [tname, setTname] = useState("");
     const [loc, setLoc] = useState("");
     const [response, setResponse] = useState("");
+    //for image map rendering tours as markers (tentative)
+    const [markers, setMarkers] = useState([]);
 
     //taken from App.js and modified
     async function getByTourId(id) {
         console.log("Id =", id)
         console.log('Getting by tour ID...')
-        fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/id?id="+id)
+        let res = await fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/id?id="+id)
         .then((response) => response.json().then((tData) => {
             console.log("response:", response);
             console.log("data:", tData);
@@ -37,7 +40,8 @@ function Search() {
 
            setResponse(str2);
            return tData;
-        }))                 
+        }))  
+        return res;               
       } 
 
 
@@ -45,7 +49,7 @@ function Search() {
         console.log("Tour name =", tname)
         console.log("Location =", loc)
         console.log('Getting by tour Name and location...')
-        fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/search?tourName=" + tname + "&location=" + loc)
+        let res = await fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/search?tourName=" + tname + "&location=" + loc)
         .then((response) => response.json().then((tData) => {
             console.log("response:", response);
             console.log("data:", tData);
@@ -65,24 +69,56 @@ function Search() {
             setResponse(str2);
             return tData;
         })) 
+        return res;
     }
 
     //added sendCall to be called when SEARCH button is clicked
-    let sendCall = () => {
+    let sendCall = async () => {
         console.log("SEARCH button clicked!"); //debuging
         console.log("given tour id:", tid); //debuging
         console.log("given tour name:", tname); //debuging
         console.log("given tour location:", loc); //debuging
-        let getResponse;
+        var getResponse;
         if (showId) {
-            getResponse = getByTourId(tid);
+            getResponse = await getByTourId(tid);
             //console.log("response:", getResponse);
             
         }
         else {
-           getResponse = getByTourNameLoc(tname, loc);
+           getResponse = await getByTourNameLoc(tname, loc);
+           //loading up response tours into the map
+           
         }
-        //console.log("response:", getResponse);
+        console.log("response:", getResponse);
+        setAllMarkers(getResponse);
+    }
+
+
+    //map functions:
+    //called on map element
+    async function setAllMarkers(tourRecords) {
+        //resetting markers
+        markers.splice(0, markers.length); // (may be a more efficient way with just setMarker)
+        setMarkers([]);
+        console.log("Setting marker(s)");
+        if (tourRecords[0]) {
+            tourRecords.forEach((record) => {
+                if (record.X && record.Z) {
+                    //console.log("record:", record);
+                    //console.log("markers(before):", markers);
+                    markers.push({left : record.X, top : record.Z}); //adding the markers (may be a more efficient way with just setMarker)
+                    setMarkers([...markers]); //rendering the markers
+                    //console.log("markers(after):", markers);
+                }
+            });
+        }
+        else {
+            //console.log("markers(before):", markers);
+            setMarkers([{left : tourRecords.X, top : tourRecords.Z}]);
+            //console.log("markers(after):", markers);
+        }
+       
+
     }
 
 
@@ -115,6 +151,14 @@ function Search() {
             </div>
 
             {response !== "" && <div>{response}</div>}
+
+            <div id="mapDiv">
+                <ImageMarker
+                    src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
+                    markers={markers}
+                />
+            </div>
+
         </div>
     </div>
     )

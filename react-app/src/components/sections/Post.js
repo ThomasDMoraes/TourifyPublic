@@ -2,7 +2,7 @@ import Button from "./Button";
 import React, { useState } from 'react';
 import {Amplify, Storage} from 'aws-amplify';
 import { Link } from 'react-router-dom'
-import {ImageMap, getCoordinates} from './ImageMap'; //not using right now, needs to be generalized to use.
+//import {ImageMap, getCoordinates} from './ImageMap'; //not using right now, needs to be generalized to use.
 import ImageMarker, { Marker } from "react-image-marker";
 
 
@@ -127,7 +127,7 @@ function Post() {
     }
 
     //map functions:
-    //called on XML
+    //called on map element
     async function placeMarker(marker) {
         console.log("adding marker:", marker);
         markers.push(marker);
@@ -139,17 +139,20 @@ function Post() {
         //getCoordinates(markers);
     }
 
-      //returns the marker's X/Y coordinates
-      const getCoordinates = () => {
-        console.log("markers:", markers);
-        if (markers[0]) {
-          let leftPos = markers[0].left;
-          let topPos = markers[0].top;
-          console.log("x:", leftPos, " z:", topPos);
-          //setCoords({ X:leftPos, Y: topPos });
-          return { X: leftPos, Z: topPos };
-        } 
-      };
+    //returns the marker's X/Y coordinates
+    const getCoordinates = () => {
+    console.log("markers:", markers);
+    if (markers[0]) {
+        let leftPos = markers[0].left;
+        let topPos = markers[0].top;
+        console.log("x:", leftPos, " z:", topPos);
+        //setCoords({ X:leftPos, Y: topPos });
+        return { X: leftPos, Z: topPos };
+    } 
+    };
+
+    //gets current tours for reference on the map / avoid collisions
+    
 
     //rendered component (form + map)
     return(
