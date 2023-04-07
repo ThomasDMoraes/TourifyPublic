@@ -78,9 +78,6 @@ const Hero = ({
                   <Button tag="a" color="primary" onClick={handleClick}>
                     Sign Up
                     </Button>
-                  <Button tag="a" color="dark" wideMobile href="https://github.com/cruip/open-react-template/">
-                    More information
-                    </Button>
                 </ButtonGroup>
               </div>
             </div>
