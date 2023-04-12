@@ -29,8 +29,8 @@ function Search() {
                 str = "ID: " + tData.id + "\nTour: " + tData.tourName + "\nLocation: " + tData.location +
                 (tData.url ? "\nURL: " + tData.url : "") + "\n\n";
                 //paragraph string
-                str2 = "ID: " + tData.id + "<br/>Tour: " + tData.tourName + "<br/>Location: " + tData.location +
-                (tData.url ? "<br/>URL: " + tData.url : "") + "<br/> <br/>";
+                str2 = "ID: " + tData.id + "\nTour: " + tData.tourName + "\nLocation: " + tData.location +
+                (tData.url ? "\nURL: " + tData.url : "") + "\n";
                 window.alert(str);
                 //document.getElementById("getId_res").innerHTML = str2;
             }
@@ -62,8 +62,8 @@ function Search() {
             (tour.url ? "\nURL: " + tour.url : "") + "\n\n";
 
             //first character of every line is cut for some reason, so I'm putting a random character there.
-            str2 += "aID: " + tour.id + "<br/>aTour: " + tour.tourName + "<br/>aLocation: " + tour.location +
-            (tour.url ? "<br/>aURL: " + tour.url : "") + "<br/> <br/>";
+            str2 += "ID: " + tour.id + "\nTour: " + tour.tourName + "\nLocation: " + tour.location +
+            (tour.url ? "\nURL: " + tour.url : "") + "\n ";
             });
             window.alert(str);
             setResponse(str2);
@@ -159,6 +159,7 @@ function Search() {
                 
             </div>
             <div>
+                <p> </p>
                 <Button text='Search' onClick= {()=> sendCall()}/>
             </div>
 
