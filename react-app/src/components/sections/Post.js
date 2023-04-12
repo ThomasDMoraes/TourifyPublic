@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {Amplify, Storage} from 'aws-amplify';
 import { Link } from 'react-router-dom'
 //import {ImageMap, getCoordinates} from './ImageMap'; //not using right now, needs to be generalized to use.
-import ImageMarker, { Marker } from "react-image-marker";
+import ImageMarker from "react-image-marker";
 
 
 
@@ -85,6 +85,7 @@ function Post() {
         uploadKey = "tours/"+ uploadKey;
         let url = "https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/upload";
         //getting marker coordinates
+        //note: each sphere on unity is around 1 unit long
         //let coordinates = document.getElementById("coords").value; //outdated, keeping commented for reference in case of change.
         var coordinates = getCoordinates();
         if (!coordinates) {
@@ -141,17 +142,19 @@ function Post() {
 
     //returns the marker's X/Y coordinates
     const getCoordinates = () => {
-    console.log("markers:", markers);
-    if (markers[0]) {
-        let leftPos = markers[0].left;
-        let topPos = markers[0].top;
-        console.log("x:", leftPos, " z:", topPos);
-        //setCoords({ X:leftPos, Y: topPos });
-        return { X: leftPos, Z: topPos };
-    } 
+        console.log("markers:", markers);
+        if (markers[0]) {
+            let leftPos = markers[0].left;
+            let topPos = markers[0].top;
+            console.log("x:", leftPos, " z:", topPos);
+            //setCoords({ X:leftPos, Y: topPos });
+            return { X: leftPos, Z: topPos };
+        } 
     };
 
-    //gets current tours for reference on the map / avoid collisions
+    //basic custom marker use
+
+    //gets current tours for reference on the map / avoid collisions (not implemented yet)
     
 
     //rendered component (form + map)

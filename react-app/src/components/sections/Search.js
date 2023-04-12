@@ -108,19 +108,31 @@ function Search() {
                     //console.log("markers(before):", markers);
                     markers.push({left : record.X, top : record.Z}); //adding the markers (may be a more efficient way with just setMarker)
                     setMarkers([...markers]); //rendering the markers
-                    //console.log("markers(after):", markers);
                 }
             });
         }
         else {
             //console.log("markers(before):", markers);
             setMarkers([{left : tourRecords.X, top : tourRecords.Z}]);
-            //console.log("markers(after):", markers);
         }
-       
-
     }
 
+    //declaring a custom marker as an improvement
+    //should add some onHover change in display for the user experience.
+    //hovering over should make it look selected, and pop up some text regarding the marker (tour info)
+    //might need to synchronize markers with an array of retrieved tours for this.
+    const CustomMarker = (props) => {
+        return (
+            
+            <p 
+            className="image-marker__marker image-marker__marker--default tour-marker" 
+            style = {{
+                color: "black",
+                border: '2px solid black'  
+            }} 
+            >Tour ID - {props.itemNumber}</p>
+        )
+    }
 
     return(
     <div className="container">
@@ -156,6 +168,7 @@ function Search() {
                 <ImageMarker
                     src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
                     markers={markers}
+                    markerComponent={CustomMarker}
                 />
             </div>
 

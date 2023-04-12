@@ -2,6 +2,7 @@ import Button from "./Button";
 import React, { useState } from 'react';
 import {Amplify, Storage} from 'aws-amplify';
 import { Link } from 'react-router-dom';
+import ImageMarker, { Marker } from "react-image-marker";
 
 Amplify.configure({   
     Auth: {
@@ -26,6 +27,8 @@ function Put() {
     const [tLoc, setTLoc] = useState("");
     const [in_file, setIn_file] = useState('');
     const [response, setResponse] = useState("");
+    //used for mapping
+    const [markers, setMarkers] = useState([]);
     
     let sendCall = async() => {
         //console.log("Upload button clicked!"); //debuging
@@ -100,12 +103,22 @@ function Put() {
             window.alert("PUT parameters incomplete. Canceling post.");
             return;
         }
+
+        //NOTE: in the future, let partial updates without filling in all of the information.
+        //this could be done similarly to how I set the coordinates below.
         let input_data = {
             'id': id,
             'tourName': tname,
             'location': loc,
             'fileName': 'tours/'+in_file.name
         };
+
+        //for map markers
+        var coordinates = getCoordinates();
+        if (coordinates) {
+            input_data['x-coordinate'] = coordinates.X;
+            input_data['z-coordinate'] = coordinates.Z;
+        }
         //console.log("input data:", input_data);
         //console.log("url: ", url);
                       
@@ -131,6 +144,32 @@ function Put() {
         return putRes; //returning putRes
     }
 
+    //map functions:
+    //called on map element
+    async function placeMarker(marker) {
+        console.log("adding marker:", marker);
+        markers.push(marker);
+        if (markers.length > 1) {
+          markers.splice(0, markers.length-1)
+        }
+        setMarkers([marker]);
+        getCoordinates();
+        //getCoordinates(markers);
+    }
+
+    //returns the marker's X/Y coordinates
+    const getCoordinates = () => {
+        console.log("markers:", markers);
+        if (markers[0]) {
+            let leftPos = markers[0].left;
+            let topPos = markers[0].top;
+            console.log("x:", leftPos, " z:", topPos);
+            //setCoords({ X:leftPos, Y: topPos });
+            return { X: leftPos, Z: topPos };
+        } 
+    };
+
+
     return(
         <div className="container">
             <Link to="/homeLog">Home</Link>
@@ -150,6 +189,16 @@ function Put() {
                 </div>
                 <div>
                     <Button text='Upload' onClick= {()=> sendCall()}/>
+                </div>
+                <div id="mapDiv">
+                    {/*<p id="coords" value={coords}>X={coords.X} , Y={coords.Y} </p>*/}
+                    <ImageMarker
+                        src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
+                        markers={markers}
+                        onAddMarker={(marker) => {
+                            placeMarker(marker);
+                        }}
+                    />
                 </div>
             </div>
             {response !== "" && <div>{response}</div>}
