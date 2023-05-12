@@ -15,6 +15,7 @@ function Search() {
     const [markers, setMarkers] = useState([]);
 
     //taken from App.js and modified
+    //may be transfered to just a web page whenever someone clicks a tour id, showing more of the specific info and map.
     async function getByTourId(id) {
         console.log("Id =", id)
         console.log('Getting by tour ID...')
@@ -37,7 +38,6 @@ function Search() {
            else {
                 window.alert(tData.message)
            }
-
            setResponse(str2);
            return tData;
         }))  
@@ -66,7 +66,8 @@ function Search() {
             (tour.url ? "\nURL: " + tour.url : "") + "\n ";
             });
             window.alert(str);
-            setResponse(str2);
+            //setResponse(str2);
+            setResponse(tData); //used for mapping (new update)
             return tData;
         })) 
         return res;
@@ -106,14 +107,14 @@ function Search() {
                 if (record.X && record.Z) {
                     //console.log("record:", record);
                     //console.log("markers(before):", markers);
-                    markers.push({left : record.X, top : record.Z}); //adding the markers (may be a more efficient way with just setMarker)
+                    markers.push({left : record.X, top : record.Z, tourId: record.tourId, tourName: record.tourName}); //adding the markers (may be a more efficient way with just setMarker)
                     setMarkers([...markers]); //rendering the markers
                 }
             });
         }
         else {
             //console.log("markers(before):", markers);
-            setMarkers([{left : tourRecords.X, top : tourRecords.Z}]);
+            setMarkers([{left : tourRecords.X, top : tourRecords.Z, tourId: tourRecords.tourId, tourName: tourRecords.tourName}]);
         }
     }
 
@@ -123,14 +124,15 @@ function Search() {
     //might need to synchronize markers with an array of retrieved tours for this.
     const CustomMarker = (props) => {
         return (
-            
             <p 
             className="image-marker__marker image-marker__marker--default tour-marker" 
             style = {{
                 color: "black",
-                border: '2px solid black'  
-            }} 
-            >Tour ID - {props.itemNumber}</p>
+                border: '2px solid black',
+                fontSize: '12px'
+            }}>
+                {props.tourName}
+            </p> 
         )
     }
 
@@ -163,18 +165,78 @@ function Search() {
                 <Button text='Search' onClick= {()=> sendCall()}/>
             </div>
 
-            {response !== "" && <div>{response}</div>}
+            {/*Item response for ID get*/}
+            {response && !Array.isArray(response) && <div>
+                <br/>
+                <h3>Result:</h3> {response}</div>}
+            {/*Table response for SEARCH get*/}
+            {response && Array.isArray(response) &&
+            <div> 
+                <br/>
+                <h3>Results Table:</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>URL</th>
+                        </tr>
+                        {response.map((tour) => {
+                            return (<Tour
+                                key = {tour.id}
+                                tour_id = {tour.id}
+                                tour_name = {tour.tourName}
+                                tour_loc = {tour.location}
+                                tour_url = {tour.url}
+                            />)
+                        })}
+                    </tbody>
+                </table>
 
-            <div id="mapDiv">
-                <ImageMarker
-                    src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
-                    markers={markers}
-                    markerComponent={CustomMarker}
-                />
-            </div>
+
+            </div>}
+                {response && <div>
+                    <br/>
+                    <h3>Results Map:</h3>
+                    <ImageMarker
+                        src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
+                        markers={markers}
+                        markerComponent={CustomMarker}
+                    />
+                </div>}
+
+
+
 
         </div>
     </div>
     )
 }
+
+function Tour(props) {
+    return (
+            <tr>
+                <td>
+                    {props.tour_id}
+                </td>
+                <td>
+                    {props.tour_name}
+                </td>
+                <td>
+                    {props.tour_loc}
+                </td>
+                <td>
+                    <a href={props.tour_url}>{props.tour_url}</a>
+                </td>
+            {/* Including a link to the corresponding TourInfo page using a route, link, and ID prop */}
+            {/*<Link to = {'/MovieInfo/' + props.movie_id}>Visit</Link>
+            <Routes>
+                <Route path = {'/MovieInfo' + props.movie_id} element={<MovieInfo/>} />
+            </Routes>*/}
+        </tr>
+    )
+}
+
+
 export default Search;
