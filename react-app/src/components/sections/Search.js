@@ -2,6 +2,7 @@ import Button from "./Button";
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import ImageMarker, { Marker } from "react-image-marker";
+import UserPool from "./UserPool";
 
 function Search() {
     const [showId, setShowId] = useState(true);
@@ -14,12 +15,30 @@ function Search() {
     //for image map rendering tours as markers (tentative)
     const [markers, setMarkers] = useState([]);
 
+
+    //adding auth to call using user cognito tokens. Make userSession a global variable later so we don't have to use this everywhere.
+    const userSession = UserPool.getCurrentUser().getSession((err, session) => {
+        if (err) {
+            return err;
+        }
+        else {
+            return session;
+        }
+    })
+    //console.log("User Session:", userSession);
+
     //taken from App.js and modified
     //may be transfered to just a web page whenever someone clicks a tour id, showing more of the specific info and map.
     async function getByTourId(id) {
         console.log("Id =", id)
         console.log('Getting by tour ID...')
-        let res = await fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/id?id="+id)
+        let res = await fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/id?id="+id, 
+        {
+            method: "GET",
+            headers: {
+                "Authorization": userSession.idToken.jwtToken
+            }
+        })
         .then((response) => response.json().then((tData) => {
             console.log("response:", response);
             console.log("data:", tData);
@@ -49,11 +68,21 @@ function Search() {
         console.log("Tour name =", tname)
         console.log("Location =", loc)
         console.log('Getting by tour Name and location...')
-        let res = await fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/search?tourName=" + tname + "&location=" + loc)
+
+
+
+        let res = await fetch("https://2d7tkc5pj2.execute-api.us-east-1.amazonaws.com/beta/tours/search?tourName=" + tname + "&location=" + loc, 
+        {
+            //auth header
+            method: "GET",
+            headers: {
+                "Authorization": userSession.idToken.jwtToken
+            }
+        })
         .then((response) => response.json().then((tData) => {
             console.log("response:", response);
             console.log("data:", tData);
-
+            /* //old outputs with strings
             let str, str2;
             str = ""; //pop-up string
             str2 = ""; //html paragraph string
@@ -65,8 +94,9 @@ function Search() {
             str2 += "ID: " + tour.id + "\nTour: " + tour.tourName + "\nLocation: " + tour.location +
             (tour.url ? "\nURL: " + tour.url : "") + "\n ";
             });
-            window.alert(str);
+            //window.alert(str);
             //setResponse(str2);
+            */
             setResponse(tData); //used for mapping (new update)
             return tData;
         })) 

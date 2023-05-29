@@ -4,6 +4,7 @@ import {Amplify, Storage} from 'aws-amplify';
 import { Link } from 'react-router-dom'
 //import {ImageMap, getCoordinates} from './ImageMap'; //not using right now, needs to be generalized to use.
 import ImageMarker from "react-image-marker";
+import UserPool from "./UserPool";
 
 
 
@@ -32,6 +33,17 @@ function Post() {
     const [in_file, setIn_file] = useState('');
     //used for mapping
     const [markers, setMarkers] = useState([]);
+
+    //adding auth to call using user cognito tokens. Make userSession a global variable later so we don't have to use this everywhere.
+    const userSession = UserPool.getCurrentUser().getSession((err, session) => {
+        if (err) {
+            return err;
+        }
+        else {
+            return session;
+        }
+    })
+    //console.log("User Session:", userSession);
     
 
 
@@ -108,7 +120,10 @@ function Post() {
         let postRes = await fetch(url, 
             {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": userSession.idToken.jwtToken
+                },
                 body: JSON.stringify(input_data)
             })
             .then((response) => response.json().then((data) => {
