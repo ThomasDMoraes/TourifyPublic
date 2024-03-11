@@ -1,0 +1,55 @@
+.vertical-navbar {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:#232323;
+    transition: .5s ease;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: min(max(15px, 1.2vw), 25px);  /* min 15px, max 25, otherwise 1.2vw */
+} 
+
+.nav-link:hover, .nav-link:focus, .nav-item > .disabled {
+    text-decoration: underline;
+    color: rgb(155, 77, 228);
+}
+
+.nav-image {
+    width:200px;
+    aspect-ratio: 10/9;
+    opacity:75%;
+}
+
+.nav-image:hover {
+    filter: hue-rotate(40deg) brightness(120%);
+    opacity:100%;
+}
+
+.tour-item {
+    border: 3px solid transparent;
+}
+
+.tour-item:hover {
+    background-color:#232323;
+    border: 3px solid rgb(155, 77, 228);
+    animation: itemHover 0.2s ease-in-out;
+}
+
+@keyframes itemHover {
+    from {border: 3px solid transparent;}
+    to {background-color: #232323; border: 3px solid rgb(155, 77, 228);}
+}
+
+.modal-content {
+    border:10px solid rgb(155, 77, 228);
+    background-color: #232323;
+}
+

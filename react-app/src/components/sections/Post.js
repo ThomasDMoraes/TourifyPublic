@@ -1,10 +1,18 @@
-import Button from "./Button";
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Amplify, Storage} from 'aws-amplify';
-import { Link } from 'react-router-dom'
 //import {ImageMap, getCoordinates} from './ImageMap'; //not using right now, needs to be generalized to use.
 import ImageMarker from "react-image-marker";
 import UserPool from "./UserPool";
+import { TourScriptsContext } from './TourScripts';
+//React Bootstrap for grid layout
+import Button from '../elements/Button';
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+//notification pop-up messages
+import {NotificationManager} from 'react-notifications';
 
 
 
@@ -33,6 +41,9 @@ function Post() {
     const [in_file, setIn_file] = useState('');
     //used for mapping
     const [markers, setMarkers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    //importing functions instead for more reusability across the app. Commented out the old ones for now.
+    const {postTour} = useContext(TourScriptsContext);
 
     //adding auth to call using user cognito tokens. Make userSession a global variable later so we don't have to use this everywhere.
     const userSession = UserPool.getCurrentUser().getSession((err, session) => {
@@ -48,19 +59,38 @@ function Post() {
 
 
     let sendCall = async () => {
+        if (!tName || !tLoc || !in_file || markers.length < 1) {
+            console.log("Missing inputs. Try again");
+            NotificationManager.warning("Missing inputs. Make sure all fields are selected and there is a mapped pointer.");
+            return;
+        }
+
         console.log("Upload button clicked!"); //debuging
         console.log("given tour name:", tName); //debuging
         console.log("given tour location:", tLoc); //debuging
         console.log("given file name:", fname); //debuging    
         console.log("given file:", in_file); //debuging  
-        let getResponse = await postTour(tName);
+        let tObj = {
+            "name": tName,
+            "loc": tLoc,
+            "coordinatesX": getCoordinates().X,
+            "coordinatesZ": getCoordinates().Z
+        };
+        //let getResponse = await postTour(tName);
+        let getResponse = await postTour(tObj, in_file);
         console.log("post status code:", getResponse.status);
+        /*
         if (getResponse.status && getResponse.status == 200) {
             onChange() //should be done after confirming the dynamodb post to make sure files are not created unlinked to a database record
         }
+        else {
+            //DELETE THE TOUR RECORD INSTEAD!
+        }
+        */
         
     }
 
+    //sets the input file as an image for upload
     async function handleImageAsFile(e){
         console.log("e:",e);
         //image var holds the file object which has a type property 
@@ -70,6 +100,8 @@ function Post() {
         console.log('file:',in_file);
      }
 
+    //rename this function to fileUpload() or something...
+    /*
     async function onChange() {      
         console.log("given file:", in_file); //debuging  
         
@@ -79,7 +111,7 @@ function Post() {
 
         if (fileType.substring(0, 5) != "image" && fileType.substring(0, 5) != "video") {
             console.log("Error: Input files must be of type image or video.");
-            window.alert("Error: Input files must be of type image or video.");
+            NotificationManager.error("Error: Input files must be of type image or video.");
             return;
         }
 
@@ -90,8 +122,11 @@ function Post() {
         } catch (error){
             console.log("Error uploading file: ", error);
         }
-    }    
+    }
+    */
 
+    /*
+    //posts the tour parameters in DynamoDB
     async function postTour(tName){
         let uploadKey = in_file.name;
         uploadKey = "tours/"+ uploadKey;
@@ -102,7 +137,7 @@ function Post() {
         var coordinates = getCoordinates();
         if (!coordinates) {
             console.log("POST: NO COORDINATES GIVEN");
-            window.alert("Error: Please try again after marking the tour the map.");
+            NotificationManager.error("Error: Please try again after marking the tour the map.");
             return;
         }
         console.log("coordinates:", coordinates);
@@ -129,18 +164,18 @@ function Post() {
             .then((response) => response.json().then((data) => {
                 console.log("response:", response);
                 console.log("data:", data);
-                window.alert(data.message);
-                //document.getElementById("post_res").innerHTML = data.message;
+                NotificationManager.success(data.message);
                 data.status = response.status;
                 return data; //returning data and response status code to putRes
             }))
             .catch((error) => {
                 console.log("error:", error);
-                window.alert(error);
+                NotificationManager.error(error);
                 return error; //error already has a status code
             })
         return postRes;
     }
+    */
 
     //map functions:
     //called on map element
@@ -174,28 +209,64 @@ function Post() {
 
     //rendered component (form + map)
     return(
-        <div className="container">
-            <Link to="/homeLog">Home</Link>
+        <Container>
             <h1>Post Page</h1>
-            <div className="content">                
-                <div className="Upload">
-                            <input id='input_tourName' type='text' placeholder="Enter Tour Name" 
-                            value={tName} onChange={(e) => setTName(e.target.value)}></input>
-                            <input id='input_tourLocation' type='text' placeholder="Enter Tour Location" 
-                            value={tLoc} onChange={(e) => setTLoc(e.target.value)}></input>
-                                         
-                </div>
-                <div>                       
-                    <input id='post_file' type='file' onChange={(e) => handleImageAsFile(e)}></input> 
-                </div>
-                <div>
-                    <Button text='Upload' onClick= {()=> sendCall()}/>
-                </div>
+            <Card bg="dark" className="text-center">
+                <Card.Body>   
+                    <Form>
+                        <Form.Group controlId="formGroupName" >
+                            <Row className="d-flex align-items-center">
+                                <Col md="4">
+                                    <Form.Label className="form-label"><h3>Name:</h3></Form.Label>
+                                </Col>
+                                <Col md="6">
+                                    <Form.Control className="form-input"
+                                        type="text"
+                                        placeHolder="Enter tour's name"
+                                        value={tName}
+                                        onChange={(e) => setTName(e.target.value)}   
+                                    />
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                        <Form.Group controlId="formGroupLocation">
+                            <Row className="d-flex align-items-center">
+                                <Col md="4">
+                                    <Form.Label className="form-label"><h3>Location:</h3></Form.Label>
+                                </Col>
+                                <Col md="6">
+                                    <Form.Control className="form-input"
+                                        type="text"
+                                        placeHolder="Enter tour's location"
+                                        value={tLoc}
+                                        onChange={(e) => setTLoc(e.target.value)}       
+                                />
+                                </Col>
+                            </Row>
+                        </Form.Group> 
+                        <Form.Group controlId="formGroupFile">
+                            <Row className="d-flex align-items-center">
+                                <Col md="4">
+                                    <Form.Label className="form-label"><h3>Image file:</h3></Form.Label>
+                                </Col>
+                                <Col md="6">
+                                    <Form.Control className="form-input"
+                                        type="file"
+                                        placeHolder="Enter tour's VR image"
+                                        onChange={(e) => handleImageAsFile(e)}      
+                                />
+                                </Col>
+                            </Row>
+                        </Form.Group> 
+                    </Form>
+                    <Button className="my-3" color="primary" loading={loading} onClick={()=> sendCall()} style={{width:"25%"}}>Post</Button>
+                </Card.Body>
+            </Card>
 
-                <br/>
-                {/*<ImageMap id="postMap"></ImageMap>*/}
-                <div id="mapDiv">
-                    {/*<p id="coords" value={coords}>X={coords.X} , Y={coords.Y} </p>*/}
+            <Row className="my-5">
+                <Card bg="dark">
+                    <Card.Title className="text-center"><h2>Map</h2></Card.Title>
+                    <Card.Text><i>Click where the tour is located to map it.</i></Card.Text>
                     <ImageMarker
                         src="https://tourify-tours.s3.amazonaws.com/public/maps/map.jpg"
                         markers={markers}
@@ -203,11 +274,10 @@ function Post() {
                             placeMarker(marker);
                         }}
                     />
-                </div>
-
-            </div>
-        </div>
-        )
+                </Card>
+            </Row>                  
+        </Container>
+    )
     
 }
 export default Post;

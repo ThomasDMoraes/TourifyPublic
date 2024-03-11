@@ -1,4 +1,4 @@
-import React, {createContext} from "react";
+import React, {useState, createContext} from "react";
 import {CognitoUser, AuthenticationDetails} from "amazon-cognito-identity-js";
 import Pool from "./UserPool";
 
@@ -6,16 +6,20 @@ import Pool from "./UserPool";
 
 const AccountContext = createContext();
 
+
 const Account = (props) => {
+
     const getSession = async () => {
         return await new Promise((resolve, reject) => {
             const user = Pool.getCurrentUser();
             if (user) {
                 user.getSession((err, session) => {
                     if (err) {
-                        reject();
+                        //status?
+                        reject(err);
                     }
                     else {
+                        //status?
                         resolve(session);
                     }
                 })
@@ -33,6 +37,7 @@ const Account = (props) => {
     
             user.authenticateUser(authDetails, {
                 onSuccess: (data) => {
+                    //status?
                     console.log("onSuccess:", data);
                     resolve(data);
                 },
@@ -53,11 +58,17 @@ const Account = (props) => {
         const user = Pool.getCurrentUser();
         if (user) {
             user.signOut();
+            //status?
+            window.location.href = '/';
         }
     };
 
+    const getUser = () => {
+        return Pool.getCurrentUser();
+    }
+
     return (
-        <AccountContext.Provider value={{authenticate, getSession, logout}}>
+        <AccountContext.Provider value={{authenticate, getSession, logout, getUser}}>
             {props.children}
         </AccountContext.Provider>
     )
