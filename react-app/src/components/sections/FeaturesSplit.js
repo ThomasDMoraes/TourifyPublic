@@ -156,7 +156,7 @@ const FeaturesSplit = ({
             <div className="split-item">
               <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
                 <div className="text-xxs text-color-primary fw-600 tt-u mb-8">
-                  Back-end Developer & AWS Specialist
+                  Full Stack Developer & AWS Specialist
                   </div>
                 <h3 className="mt-0 mb-12">
                   Thomas Moraes
