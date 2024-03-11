@@ -21,7 +21,7 @@ function HomeLog() {
             </Row>
             <Row className="mb-5">
                 <Col>
-                    <Link to="homeLog/search">
+                    <Link to="/homeLog/search">
                         <Container className="d-flex justify-content-center" >
                             <Image className="nav-image" 
                                 src={require('./../../assets/images/searchLogo.jpg')}
@@ -31,7 +31,7 @@ function HomeLog() {
                     </Link>
                 </Col>
                 <Col >
-                    <Link to="homeLog/post">
+                    <Link to="/homeLog/post">
                     <Container className="d-flex justify-content-center">
                         <Image className="nav-image" 
                             src={require('./../../assets/images/upload.JPG')}
@@ -43,7 +43,7 @@ function HomeLog() {
             </Row>
             <Row className="mb-5">
                 <Col>
-                    <Link to="homeLog/delete">
+                    <Link to="/homeLog/delete">
                     <Container className="d-flex justify-content-center">
                         <Image className="nav-image" 
                             src={require('./../../assets/images/delete.JPG')}
@@ -53,7 +53,7 @@ function HomeLog() {
                     </Link>
                 </Col>
                 <Col>
-                    <Link to="homeLog/put">
+                    <Link to="/homeLog/put">
                     <Container className="d-flex justify-content-center container-center">
                         <Image className="nav-image"
                             src={require('./../../assets/images/replace.JPG')}
