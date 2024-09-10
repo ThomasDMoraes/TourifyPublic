@@ -1,0 +1,934 @@
+---
+Metadata:
+  TemplateId: "arn:aws:cloudformation:us-east-1:252089665278:generatedTemplate/4b6a61e7-af10-4026-94a2-01e33e0f015e"
+Parameters:
+  LambdaFunction00getVideo00BbJzoCodeS3ObjectVersionSEfw7:
+    NoEcho: "true"
+    Type: "String"
+    Description: "For versioned objects, the version of the deployment package object\
+      \ to use."
+  LambdaFunction00postVideo00czEgoCodeZipFilepG3Xp:
+    NoEcho: "true"
+    Type: "String"
+    Description: "(Node.js and Python) The source code of your Lambda function. If\
+      \ you include your function source inline with this parameter, CFN places it\
+      \ in a file named ``index`` and zips it to create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html).\
+      \ This zip file cannot exceed 4MB. For the ``Handler`` property, the first part\
+      \ of the handler identifier must be ``index``. For example, ``index.handler``.\n\
+      \  For JSON, you must escape quotes and special characters such as newline (``\\\
+      n``) with a backslash.\n If you specify a function that interacts with an AWS\
+      \ CloudFormation custom resource, you don't have to write your own functions\
+      \ to send responses to the custom resource that invoked the function. AWS CloudFormation\
+      \ provides a response module ([cfn-response](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-lambda-function-code-cfnresponsemodule.html))\
+      \ that simplifies sending responses. See [Using Lambda with CloudFormation](https://docs.aws.amazon.com/lambda/latest/dg/services-cloudformation.html)\
+      \ for details."
+  LambdaFunction00postVideo00czEgoCodeS3KeyAr2D4:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The Amazon S3 key of the deployment package."
+  LambdaFunction00getVideo00BbJzoCodeZipFileIGY2y:
+    NoEcho: "true"
+    Type: "String"
+    Description: "(Node.js and Python) The source code of your Lambda function. If\
+      \ you include your function source inline with this parameter, CFN places it\
+      \ in a file named ``index`` and zips it to create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html).\
+      \ This zip file cannot exceed 4MB. For the ``Handler`` property, the first part\
+      \ of the handler identifier must be ``index``. For example, ``index.handler``.\n\
+      \  For JSON, you must escape quotes and special characters such as newline (``\\\
+      n``) with a backslash.\n If you specify a function that interacts with an AWS\
+      \ CloudFormation custom resource, you don't have to write your own functions\
+      \ to send responses to the custom resource that invoked the function. AWS CloudFormation\
+      \ provides a response module ([cfn-response](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-lambda-function-code-cfnresponsemodule.html))\
+      \ that simplifies sending responses. See [Using Lambda with CloudFormation](https://docs.aws.amazon.com/lambda/latest/dg/services-cloudformation.html)\
+      \ for details."
+  LambdaFunction00getVideo00BbJzoCodeImageUri825uy:
+    NoEcho: "true"
+    Type: "String"
+    Description: "URI of a [container image](https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html)\
+      \ in the Amazon ECR registry."
+  LambdaFunction00postVideo00czEgoCodeSourceKMSKeyArnMlEuM:
+    NoEcho: "true"
+    Type: "String"
+    Description: "Value of write only property Code/SourceKMSKeyArn of resource LambdaFunction00postVideo00czEgo."
+  LambdaFunction00postVideo00czEgoCodeImageUriEBUVE:
+    NoEcho: "true"
+    Type: "String"
+    Description: "URI of a [container image](https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html)\
+      \ in the Amazon ECR registry."
+  LambdaFunction00postVideo00czEgoCodeS3BucketlN8PM:
+    NoEcho: "true"
+    Type: "String"
+    Description: "An Amazon S3 bucket in the same AWS-Region as your function. The\
+      \ bucket can be in a different AWS-account."
+  LambdaFunction00getVideo00BbJzoCodeS3BucketuKnNa:
+    NoEcho: "true"
+    Type: "String"
+    Description: "An Amazon S3 bucket in the same AWS-Region as your function. The\
+      \ bucket can be in a different AWS-account."
+  LambdaFunction00getVideo00BbJzoCodeSourceKMSKeyArntILRR:
+    NoEcho: "true"
+    Type: "String"
+    Description: "Value of write only property Code/SourceKMSKeyArn of resource LambdaFunction00getVideo00BbJzo."
+  LambdaFunction00getVideo00BbJzoCodeS3Keyuuxml:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The Amazon S3 key of the deployment package."
+  LambdaFunction00postVideo00czEgoCodeS3ObjectVersionsd7Ba:
+    NoEcho: "true"
+    Type: "String"
+    Description: "For versioned objects, the version of the deployment package object\
+      \ to use."
+Resources:
+  ApiGatewayDeployment00xtw8lq00V00nB:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
+  ApiGatewayDeployment009cj5y700ChyLV:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  IAMRole00CognitotouralityappidpoolUnauthRole00Z5n7Y:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+      MaxSessionDuration: 3600
+      RoleName: "Cognito_touralityappidpoolUnauth_Role"
+      Policies:
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource:
+            - "*"
+            Action:
+            - "mobileanalytics:PutEvents"
+            - "cognito-sync:*"
+            Effect: "Allow"
+        PolicyName: "oneClick_Cognito_touralityappidpoolUnauth_Role_1678845258122"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Condition:
+            StringEquals:
+              cognito-identity.amazonaws.com:aud: "us-east-1:fa78fe4c-7cad-46e5-9edc-fb8f2851dc31"
+            ForAnyValue:StringLike:
+              cognito-identity.amazonaws.com:amr: "unauthenticated"
+          Action: "sts:AssumeRoleWithWebIdentity"
+          Effect: "Allow"
+          Principal:
+            Federated: "cognito-identity.amazonaws.com"
+  ApiGatewayDeployment00ku2t6d003ZNgY:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
+  ApiGatewayDeployment00no38y3004zhTW:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment000dlj57000a8rM:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00k2883j00HJoXf:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment0018ieps00kLZJG:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00f0ukvb0084Eko:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00gupz0n00UYYNK:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  LambdaPermission00functionpostVideo009D8z6:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00postVideo00czEgo"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn:
+        Fn::GetAtt:
+        - "S3Bucket00tourifytours00XJ12P"
+        - "Arn"
+      Principal: "s3.amazonaws.com"
+      SourceAccount: "252089665278"
+  LambdaPermission00functiongetVideo00JrJka:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00getVideo00BbJzo"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-1:252089665278:2d7tkc5pj2/*/POST/tours/upload"
+      Principal: "apigateway.amazonaws.com"
+  ApiGatewayDeployment00pu5u0s005H1qw:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment002jkmo600Db8S6:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  LambdaPermission00functiongetVideo00bfJNF:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00getVideo00BbJzo"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-1:252089665278:2d7tkc5pj2/*/DELETE/tours/delete"
+      Principal: "apigateway.amazonaws.com"
+  ApiGatewayRestApi002d7tkc5pj200m9Xfj:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::RestApi"
+    DeletionPolicy: "Retain"
+    Properties:
+      ApiKeySourceType: "HEADER"
+      Description: "contains endpoints for the Tourify app."
+      EndpointConfiguration:
+        Types:
+        - "EDGE"
+      DisableExecuteApiEndpoint: false
+      Name: "TourifyAPI"
+  ApiGatewayDeployment003nixbh00AVcLe:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "creating and testing basic routes"
+  ApiGatewayDeployment00b5jco000A3lOB:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  IAMRole00CognitotouralitywebidpoolUnauthRole00mtbxm:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+      MaxSessionDuration: 3600
+      RoleName: "Cognito_touralitywebidpoolUnauth_Role"
+      Policies:
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource:
+            - "*"
+            Action:
+            - "mobileanalytics:PutEvents"
+            - "cognito-sync:*"
+            Effect: "Allow"
+        PolicyName: "oneClick_Cognito_touralitywebidpoolUnauth_Role_1679599272034"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Condition:
+            StringEquals:
+              cognito-identity.amazonaws.com:aud: "us-east-1:3e9b7212-4b0b-4d06-b418-cd8ec3dd29db"
+            ForAnyValue:StringLike:
+              cognito-identity.amazonaws.com:amr: "unauthenticated"
+          Action: "sts:AssumeRoleWithWebIdentity"
+          Effect: "Allow"
+          Principal:
+            Federated: "cognito-identity.amazonaws.com"
+  ApiGatewayDeployment00mmhkcl00pk62P:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  DynamoDBTable00tours00pUstI:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::DynamoDB::Table"
+    DeletionPolicy: "Retain"
+    Properties:
+      SSESpecification:
+        SSEEnabled: false
+      TableName: "tours"
+      AttributeDefinitions:
+      - AttributeType: "S"
+        AttributeName: "id"
+      ContributorInsightsSpecification:
+        Enabled: false
+      BillingMode: "PAY_PER_REQUEST"
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: false
+      KeySchema:
+      - KeyType: "HASH"
+        AttributeName: "id"
+      DeletionProtectionEnabled: false
+      TableClass: "STANDARD"
+      Tags: []
+      TimeToLiveSpecification:
+        Enabled: false
+  LambdaPermission00functiongetVideo00ig51M:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00getVideo00BbJzo"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-1:252089665278:2d7tkc5pj2/*/GET/tours/search"
+      Principal: "apigateway.amazonaws.com"
+  IAMRole00CognitotouralityappidpoolAuthRole00O9N1w:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+      MaxSessionDuration: 3600
+      RoleName: "Cognito_touralityappidpoolAuth_Role"
+      Policies:
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource:
+            - "*"
+            Action:
+            - "mobileanalytics:PutEvents"
+            - "cognito-sync:*"
+            - "cognito-identity:*"
+            Effect: "Allow"
+        PolicyName: "oneClick_Cognito_touralityappidpoolAuth_Role_1678845258121"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Condition:
+            StringEquals:
+              cognito-identity.amazonaws.com:aud: "us-east-1:fa78fe4c-7cad-46e5-9edc-fb8f2851dc31"
+            ForAnyValue:StringLike:
+              cognito-identity.amazonaws.com:amr: "authenticated"
+          Action: "sts:AssumeRoleWithWebIdentity"
+          Effect: "Allow"
+          Principal:
+            Federated: "cognito-identity.amazonaws.com"
+  ApiGatewayDeployment00mbfqjy00PFXnr:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
+  S3Bucket00tourifytours00XJ12P:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::S3::Bucket"
+    DeletionPolicy: "Retain"
+    Properties:
+      NotificationConfiguration:
+        QueueConfigurations: []
+        TopicConfigurations: []
+        LambdaConfigurations:
+        - Function:
+            Fn::GetAtt:
+            - "LambdaFunction00postVideo00czEgo"
+            - "Arn"
+          Event: "s3:ObjectCreated:Post"
+      PublicAccessBlockConfiguration:
+        RestrictPublicBuckets: false
+        IgnorePublicAcls: false
+        BlockPublicPolicy: false
+        BlockPublicAcls: false
+      BucketName: "tourify-tours"
+      CorsConfiguration:
+        CorsRules:
+        - AllowedHeaders:
+          - "*"
+          AllowedMethods:
+          - "PUT"
+          - "POST"
+          - "DELETE"
+          AllowedOrigins:
+          - "*"
+        - AllowedHeaders:
+          - "*"
+          AllowedMethods:
+          - "GET"
+          AllowedOrigins:
+          - "*"
+      OwnershipControls:
+        Rules:
+        - ObjectOwnership: "BucketOwnerEnforced"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - BucketKeyEnabled: false
+          ServerSideEncryptionByDefault:
+            SSEAlgorithm: "AES256"
+  ApiGatewayDeployment00rek6wc00CzUKV:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00mfwdqw00lcm4J:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  LambdaPermission00functiongetVideo00Q9dgx:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00getVideo00BbJzo"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-1:252089665278:2d7tkc5pj2/*/PUT/tours/update"
+      Principal: "apigateway.amazonaws.com"
+  ApiGatewayDeployment002x3tbz00TIKSZ:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
+  IAMRole00CognitotouralitywebidpoolAuthRole00zzC8o:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      MaxSessionDuration: 3600
+      RoleName: "Cognito_touralitywebidpoolAuth_Role"
+      Policies:
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource:
+            - "*"
+            Action:
+            - "mobileanalytics:PutEvents"
+            - "cognito-sync:*"
+            - "cognito-identity:*"
+            Effect: "Allow"
+        PolicyName: "oneClick_Cognito_touralitywebidpoolAuth_Role_1679599272034"
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource: "arn:aws:s3:::tourify-tours/*"
+            Action:
+            - "s3:PutObject"
+            - "s3:GetObject"
+            - "s3:DeleteObjectVersion"
+            - "s3:GetObjectVersionTagging"
+            - "s3:GetObjectAttributes"
+            - "s3:DeleteObject"
+            - "s3:GetObjectVersionAttributes"
+            - "s3:GetObjectVersion"
+            Effect: "Allow"
+            Sid: "VisualEditor0"
+        PolicyName: "Tourify-adminS3Privileges"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Condition:
+            StringEquals:
+              cognito-identity.amazonaws.com:aud: "us-east-1:3e9b7212-4b0b-4d06-b418-cd8ec3dd29db"
+            ForAnyValue:StringLike:
+              cognito-identity.amazonaws.com:amr: "authenticated"
+          Action: "sts:AssumeRoleWithWebIdentity"
+          Effect: "Allow"
+          Principal:
+            Federated: "cognito-identity.amazonaws.com"
+  IAMManagedPolicy00policyTouralityCreatorS3ReadWriteRole0097Nyh:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::ManagedPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      ManagedPolicyName: "Tourality-Creator-S3-ReadWrite-Role"
+      Path: "/"
+      Description: "Allows users to read and write objects in the tourify-tours bucket."
+      Groups: []
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Resource:
+          - "arn:aws:s3:::tourify-tours"
+          - "arn:aws:s3:::tourify-tours/*"
+          Action:
+          - "s3:PutObject"
+          - "s3:GetObject"
+          - "s3:GetObjectAttributes"
+          - "s3:GetObjectTagging"
+          - "s3:ListBucket"
+          - "s3:DeleteObject"
+          Effect: "Allow"
+          Sid: "VisualEditor0"
+      Roles:
+      - Ref: "IAMRole00TouralityCreatorRole006OCeE"
+      Users: []
+  ApiGatewayStage00beta00FbT3D:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Stage"
+    DeletionPolicy: "Retain"
+    Properties:
+      DeploymentId:
+        Fn::GetAtt:
+        - "ApiGatewayDeployment00rek6wc00CzUKV"
+        - "DeploymentId"
+      Description: "first tests"
+      StageName: "beta"
+      TracingEnabled: false
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      MethodSettings:
+      - CacheTtlInSeconds: 300
+        ResourcePath: "/*"
+        CacheDataEncrypted: false
+        DataTraceEnabled: false
+        ThrottlingBurstLimit: 5000
+        CachingEnabled: false
+        MetricsEnabled: false
+        HttpMethod: "*"
+        ThrottlingRateLimit: 10000
+      CacheClusterSize: "0.5"
+      CacheClusterEnabled: false
+  ApiGatewayDeployment00mqvu7i009yCSf:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
+  ApiGatewayDeployment0086wjzw00TAyKP:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment000ph9cj00uaDWw:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00ml9iic00x3JUn:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00pqi8lx00mblJb:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment005txsx000nhL5a:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  IAMRole00TouralityCreatorRole006OCeE:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::252089665278:policy/Tourality-Creator-S3-ReadWrite-Role"
+      MaxSessionDuration: 3600
+      RoleName: "Tourality-Creator-Role"
+      Description: "Given to the Creator user group."
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Condition:
+            StringEquals:
+              cognito-identity.amazonaws.com:aud: "us-east-1:3e9b7212-4b0b-4d06-b418-cd8ec3dd29db"
+          Action: "sts:AssumeRoleWithWebIdentity"
+          Effect: "Allow"
+          Principal:
+            Federated: "cognito-identity.amazonaws.com"
+  ApiGatewayDeployment00smt1dj00IWfPV:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "cors tests"
+  LambdaFunction00postVideo00czEgo:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Function"
+    DeletionPolicy: "Retain"
+    Properties:
+      MemorySize: 128
+      Description: "An Amazon S3 trigger that retrieves metadata for the object that\
+        \ has been updated."
+      TracingConfig:
+        Mode: "PassThrough"
+      Timeout: 3
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: "Auto"
+      Handler: "lambda_function.lambda_handler"
+      Code:
+        SourceKMSKeyArn:
+          Ref: "LambdaFunction00postVideo00czEgoCodeSourceKMSKeyArnMlEuM"
+        S3ObjectVersion:
+          Ref: "LambdaFunction00postVideo00czEgoCodeS3ObjectVersionsd7Ba"
+        S3Bucket:
+          Ref: "LambdaFunction00postVideo00czEgoCodeS3BucketlN8PM"
+        ZipFile:
+          Ref: "LambdaFunction00postVideo00czEgoCodeZipFilepG3Xp"
+        ImageUri:
+          Ref: "LambdaFunction00postVideo00czEgoCodeImageUriEBUVE"
+        S3Key:
+          Ref: "LambdaFunction00postVideo00czEgoCodeS3KeyAr2D4"
+      Role:
+        Fn::GetAtt:
+        - "IAMRole00tourifylambda00JyHG2"
+        - "Arn"
+      FileSystemConfigs: []
+      FunctionName: "postVideo"
+      Runtime: "python3.7"
+      PackageType: "Zip"
+      LoggingConfig:
+        LogFormat: "Text"
+        LogGroup: "/aws/lambda/postVideo"
+      RecursiveLoop: "Terminate"
+      EphemeralStorage:
+        Size: 512
+      Tags:
+      - Value: "s3-get-object-python"
+        Key: "lambda-console:blueprint"
+      Architectures:
+      - "x86_64"
+  IAMRole00TouralityBasicUserRole00sJlDa:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+      MaxSessionDuration: 3600
+      RoleName: "Tourality-Basic-User-Role"
+      Description: "A role with minimal access to Tourality resources, intended for\
+        \ regular users."
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Condition:
+            StringEquals:
+              cognito-identity.amazonaws.com:aud: "us-east-1:3e9b7212-4b0b-4d06-b418-cd8ec3dd29db"
+          Action: "sts:AssumeRoleWithWebIdentity"
+          Effect: "Allow"
+          Principal:
+            Federated: "cognito-identity.amazonaws.com"
+  LambdaPermission00functiongetVideo00mcFPn:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName:
+        Fn::GetAtt:
+        - "LambdaFunction00getVideo00BbJzo"
+        - "Arn"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-1:252089665278:2d7tkc5pj2/*/GET/tours/id"
+      Principal: "apigateway.amazonaws.com"
+  ApiGatewayDeployment008j1d5100YaAOj:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00tz0d1c006ayMF:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  IAMRole00tourifylambda00JyHG2:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+      MaxSessionDuration: 3600
+      RoleName: "tourify-lambda"
+      Description: "Allows Lambda functions to call AWS services on your behalf."
+      Policies:
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource: "arn:aws:dynamodb:us-east-1:252089665278:table/tours"
+            Action:
+            - "dynamodb:BatchGetItem"
+            - "dynamodb:BatchWriteItem"
+            - "dynamodb:ConditionCheckItem"
+            - "dynamodb:PutItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:PartiQLUpdate"
+            - "dynamodb:Scan"
+            - "dynamodb:Query"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:PartiQLSelect"
+            - "dynamodb:PartiQLInsert"
+            - "dynamodb:GetItem"
+            - "dynamodb:ImportTable"
+            - "dynamodb:PartiQLDelete"
+            Effect: "Allow"
+            Sid: "VisualEditor0"
+          - Resource: "*"
+            Action: "dynamodb:ListTables"
+            Effect: "Allow"
+            Sid: "VisualEditor1"
+        PolicyName: "DynamoDBReadAndWriteAccess"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Action: "sts:AssumeRole"
+          Effect: "Allow"
+          Principal:
+            Service: "lambda.amazonaws.com"
+  ApiGatewayDeployment00p91udx00SGDLq:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00l6sxhr00Cwb6d:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00w8ep2l00LTWWA:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  LambdaFunction00getVideo00BbJzo:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Function"
+    DeletionPolicy: "Retain"
+    Properties:
+      MemorySize: 128
+      Description: ""
+      TracingConfig:
+        Mode: "PassThrough"
+      Timeout: 3
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: "Auto"
+      Handler: "lambda_function.lambda_handler"
+      Code:
+        SourceKMSKeyArn:
+          Ref: "LambdaFunction00getVideo00BbJzoCodeSourceKMSKeyArntILRR"
+        S3ObjectVersion:
+          Ref: "LambdaFunction00getVideo00BbJzoCodeS3ObjectVersionSEfw7"
+        S3Bucket:
+          Ref: "LambdaFunction00getVideo00BbJzoCodeS3BucketuKnNa"
+        ZipFile:
+          Ref: "LambdaFunction00getVideo00BbJzoCodeZipFileIGY2y"
+        ImageUri:
+          Ref: "LambdaFunction00getVideo00BbJzoCodeImageUri825uy"
+        S3Key:
+          Ref: "LambdaFunction00getVideo00BbJzoCodeS3Keyuuxml"
+      Role:
+        Fn::GetAtt:
+        - "IAMRole00tourifylambda00JyHG2"
+        - "Arn"
+      FileSystemConfigs: []
+      FunctionName: "getVideo"
+      Runtime: "python3.9"
+      PackageType: "Zip"
+      LoggingConfig:
+        LogFormat: "Text"
+        LogGroup: "/aws/lambda/getVideo"
+      RecursiveLoop: "Terminate"
+      EphemeralStorage:
+        Size: 512
+      Architectures:
+      - "x86_64"
+  ApiGatewayDeployment00xql21k00MQE52:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00o8jbxy00Ttmmq:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
+  ApiGatewayDeployment00gmvd7n00izJYD:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00rong2f00pZuzo:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment008ru9gn00540tt:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment007us6gf00FtIjL:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "testing"
+  ApiGatewayDeployment0003gwpq00yV3WM:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  S3BucketPolicy00tourifytours00oK9PI:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::S3::BucketPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      Bucket:
+        Ref: "S3Bucket00tourifytours00XJ12P"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Resource:
+          - "arn:aws:s3:::tourify-tours"
+          - "arn:aws:s3:::tourify-tours/*"
+          Action:
+          - "s3:GetObject"
+          - "s3:GetBucketLocation"
+          - "s3:ListBucket"
+          Effect: "Allow"
+          Principal: "*"
+          Sid: "Statement01"
+        Id: "PublicAccessPolicy01"
+  ApiGatewayDeployment00x6sncg00OMaPZ:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00mocz5d000eMLs:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+  ApiGatewayDeployment00ps29ft006RJoY:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "testing"
+  ApiGatewayDeployment008rds3v00Y978X:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGateway::Deployment"
+    DeletionPolicy: "Retain"
+    Properties:
+      RestApiId:
+        Ref: "ApiGatewayRestApi002d7tkc5pj200m9Xfj"
+      Description: "tests"
